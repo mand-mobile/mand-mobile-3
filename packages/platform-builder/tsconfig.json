@@ -12,10 +12,11 @@
     "suppressImplicitAnyIndexErrors": true,
     "types": ["node", "jest"],
     "outDir": "lib",
-    "declaration": true,
+    "declaration": false,
+    "resolveJsonModule": true,
     "rootDir": "src",
     "lib": ["ES2015", "DOM"]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "src/builtin-plugins/templates"]
+  "exclude": ["node_modules"]
 }

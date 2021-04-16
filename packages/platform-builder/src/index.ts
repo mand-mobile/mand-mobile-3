@@ -1,351 +1,184 @@
-import * as assert from 'assert'
-import * as tapable from 'tapable'
-import * as R from 'ramda'
-import * as ejs from 'ejs'
-import * as find from 'find'
-import * as path from 'path'
-import * as fs from 'fs-extra'
+import * as fs from 'fs'
+import fsExtra from 'fs-extra'
 
-const execa = require('execa')
+import Plugin from './Plugin'
+import Options from './Options'
+import {
+  checkPlatformValid,
+  resolvePlugins,
+  resolveOptions,
+  resolveTemplates,
+  resolveFileLink,
+  renderTemplateFile,
+  renderTemplateDir,
+  chalk,
+  warn,
+  error
+} from './utils'
 
-/** =========================================Constant Utils Segment========================================================== */
-
-const WORKSPACE_DIRECTORY = process.cwd()
-
-/** =========================================Renderer Utils Segment========================================================== */
-
-/**
- * 超时机制封装
- * @param timeout 超时时间
- */
-const timeout = (timeout: number = 500) => new Promise((resolve, reject) => {
-  setTimeout(() => reject(new Error(`[Builder Core] exec async operation timeout!`)), timeout)
-})
-
-/**
- * 创建软链接目录
- * @param sourceDir 
- * @param targetDir 
- */
-export function linkDir(sourceDir, targetDir): Promise<void> {
-  return execa('ln', [
-    '-sFn',
-    sourceDir,
-    targetDir,
-  ])
+export interface IBuilderCommands {
+  [name: string]: (...args) => Promise<void>
 }
 
-/**
- * 模板渲染方法
- * @param filename 
- * @param data 
- * @param options 
- * @param options.timeout 模板编译超时时间 模式500ms
- * @param options.root 如果指定了root，在上下文中返回路径信息
- */
-export function compileFile(filename: string, data: any, opt?): Promise<{content: string, ctx: {filepath: string}}> {
+export default class Builder {
+  public plugins: any
+  public projectOptions: any
+  public templates: any
+  public context: any
+  public pkgContext: string
+  public platform: string
+  public service: string
+  public platformPath: string
+  public projectDir: string
+  public initialized: boolean
+  public linkFiles: Array<{source: string, target: string}>
+  public commands: IBuilderCommands
 
-  const options = R.mergeRight({timeout: 500, root: '/'}, opt)
+  constructor (context, {platform, service, platformPath}) {
+    checkPlatformValid(platform, context, platformPath)
+    this.initialized = false
+    this.pkgContext = context
+    this.platform = platform
+    this.service = service
+    this.commands = {}
+    this.context = {}
+    this.linkFiles = []
+    this.platformPath = platformPath
 
-  const filepath = path.relative(options.root, filename)
-  // 存在相对路径，标识root目录不是文件的父目录, 抛出错误
-  if (filepath.startsWith('..')) {
-    throw new assert.AssertionError({
-      actual: filepath,
-      expected: 'it should rendered without .. prefix'
-    })
+    process.env.MAND_PLATFORM = platform
+    process.env.MAND_CONTEXT = context
   }
 
-  const resolver =  new Promise((resolve, reject) => {
-    ejs.renderFile(filename, data, options, (err, str) => {
-      if (err) {
-        reject(err)
+  // @param target: single component name
+  async init (target: string) {
+    if (this.initialized) {
+      return
+    }
+    this.initialized = true
+    
+    const userOptions = this.loadUserOptions()
+    const projectOptions = new Options(userOptions, this).options
+    const projectDir = `${projectOptions.tempDir}/${this.platform}`
+
+    this.projectOptions = projectOptions
+    this.projectDir = projectDir
+
+    this.plugins = this.resolvePlugins()
+    this.templates = [{
+      template: this.resolveTemplates(),
+      renderAs: '.'
+    }]
+
+    // apply plugins.
+    this.plugins.forEach(({ id, apply }) => {
+      const pluginIns = new Plugin(id, this)
+      apply(pluginIns, {
+        target,
+        platform: this.platform,
+        service: this.service,
+        pkgContext: this.pkgContext,
+        context: this.context,
+        projectDir,
+        projectOptions
+      })
+      return [pluginIns]
+    })
+
+    await this.renderTemplate(target)
+    await this.resolveLinkFiles()
+  }
+
+  async run (name, args: any = {}, rawArgv = []) {
+    process.env.MAND_UNIT = args.unit
+
+    await this.init(args['component-name'] || '')
+
+    setTimeout(() => {
+      const command = this.commands[name]
+      if (!command && name) {
+        error(`command "${name}" does not exist.`)
+        process.exit(1)
       }
-      resolve({
-        content: str,
-        ctx: {
-          filepath,
-          root: options.root,
+      return command(args, rawArgv)
+    }, 300)
+  }
+
+  resolvePlugins () {
+    const {pkgContext, platform, service, platformPath} = this
+
+    const idToPlugin = (id, absolutePath?) => {
+      const module = require(absolutePath || id)
+      return {
+        id: id.replace(/^.\//, 'built-in:'),
+        apply: module.default || module
+      }
+    }
+
+    const builtInPlugins = [
+      './builtin-plugins/platform-setup',
+      './builtin-plugins/component-setup',
+    ]
+    const platformPlugins = resolvePlugins(`${platformPath}/${platform}/${service}/plugin`, pkgContext)
+
+    return (builtInPlugins.concat(platformPlugins)).map(id => idToPlugin(id))
+  }
+
+  async resolveLinkFiles () {
+    const {linkFiles, projectDir} = this
+    await Promise.all(linkFiles.map(links => {
+      if (links.source && links.target) {
+        return resolveFileLink(links.source, `${projectDir}/${links.target}`)
+      }
+    }))
+  }
+
+  resolveTemplates () {
+    const {pkgContext, platform, service, platformPath} = this
+    return resolveTemplates(`${platformPath}/${platform}/${service}/template`, pkgContext)
+  }
+
+  loadUserOptions () {
+    const {pkgContext, platform, service, platformPath} = this
+    return resolveOptions(`${platformPath}/${platform}/${service}/builder.config.js`, pkgContext)
+  }
+
+  async renderTemplate (target: string) {
+    // const {tempDir} = this.projectOptions
+    const {components, componentsSortByCategory: category} = this.context
+    const distRoot = this.projectDir
+    const templates = this.templates || []
+    
+    fsExtra.emptyDirSync(distRoot)
+
+    await Promise.all(
+      templates.map(({template, templateData, renderAs, ignores}) => {
+        const data = {
+          target,
+          components,
+          category,
+          ...templateData
+        }
+        if (!fs.existsSync(template)) {
+          warn(`Missing template ${chalk.bold(template)}: rendering [${renderAs}]`)
+          return
+        }
+        if (fs.statSync(template).isFile()) {
+          return renderTemplateFile(template, renderAs, data, {
+            sourceRoot: '/',
+            distRoot,
+          }).catch(err => {
+            error(`File rendering errors: ${chalk.bold(template)} \n\n ${err.message}`)
+          })
+        } else {
+          return renderTemplateDir(template, renderAs, data, {
+            sourceRoot: template,
+            distRoot,
+            ignores,
+          }).catch(err => {
+            warn(`Directory rendering errors: ${chalk.bold(template)} \n\n ${err.message}`)
+          })
         }
       })
-    })
-  })
-
-  return Promise.race([resolver, timeout(options.timeout) as any])
-}
-
-
-/**
- * 基于模板文件导出结果
- * @param str 
- * @param target 
- * @param options 
- * @param options.root
- */
-export async function exportFile(renderInfo: {content: string, ctx: {filepath: string}}, opt: {root: string, renderAs?: string}): Promise<string> {
-
-  const options = R.mergeRight({root: WORKSPACE_DIRECTORY}, opt)
-
-  const dist = path.resolve(options.root, opt.renderAs || renderInfo.ctx.filepath)
-
-  return fs.outputFile(dist, renderInfo.content, {encoding: 'utf8'}).then(() => dist)
-}
-
-
-export async function renderFile(filename, data, opt?:{sourceRoot?, distRoot?, renderAs?}) {
-
-  const {sourceRoot, distRoot, renderAs, ...compileOptions} = opt
-
-  const compiler = R.curry(compileFile)(R.__, data, {
-    root: sourceRoot, 
-    ...compileOptions,
-  })
-
-  const dister = R.curry(exportFile)(R.__, {root: distRoot, renderAs})
-
-
-  return R.composeP(dister, compiler)(filename)
-}
-
-
-/**
- * 基于模板渲染文件夹
- * @param sourceRoot 
- * @param data 
- * @param options 
- */
-export async function renderDir(sourceRoot, data?, opt?: {distRoot: string}): Promise<any> {
-
-  const options = R.mergeRight({
-    distRoot: WORKSPACE_DIRECTORY
-  }, opt)
-
-  const files: string[] =  await new Promise((res, rej) => {
-    find
-      .file(sourceRoot, (files: string[]) => {
-        res(files)
-      })
-  })
-
-  const renderer = R.curry(renderFile)(R.__, data, {sourceRoot, distRoot: options.distRoot})
-  
-  return Promise.all(R.map(renderer)(files))
-}
-
-
-/** =========================================构造容器 Segment========================================================== */
-
-export interface IMandPlugins {
-
-  apply(container: BuilderContainer): void
-
-  // 如果插件内实现了以下三个方法，则不执行BuilderContainer本身的 create, serve, build方法，改为使用插件实现的相关的方法，
-  // BuilderContainer 的config.plugins是一个数组，则后边的plugins.create|serve|build方法会覆盖前面的.
-  create?: (config, container: BuilderContainer) => Promise<void>
-  serve?: (config, container: BuilderContainer) => Promise<void>
-  build?: (config, container: BuilderContainer) => Promise<void>
-
-}
-
-export interface IContainerConfig {
-  outputRoot?: string,
-  artifactRoot?: string,
-  plugins?: any[],
-  context?: any,
-  autoClean?: boolean,
-}
-
-export class BuilderContainer {
-
-  private _config: {
-    outputRoot?: string,
-    autoClean?: boolean,
-  } = {autoClean: false}
-
-  public context = {}
-  get config(): IContainerConfig {
-    return this._config
-  }
-
-
-  public hooks = {
-
-    setContext: new tapable.SyncHook(['context']),
-    setAliasMapper: new tapable.SyncHook(['aliasMapper']),
-
-    addTemplates: new tapable.SyncHook(['templates']),
-    addLinks: new tapable.SyncHook(['linkpaths']),
-
-    // 当容器创建完成之后执行相关操作
-    afterContainerCreated: new tapable.SyncHook([]),
-  
-    extendsBabelConfig: new tapable.SyncHook(['babelConfig']),
-    extendsPostcssConfig: new tapable.SyncHook(['postcssConfig']),
-    extendsStylus: new tapable.SyncHook(['stylus']),
-
-    setBuildTasks: new tapable.AsyncParallelHook(['configures']),
-    setServeTasks: new tapable.AsyncParallelHook(['configures']),
-
-  }
-
-  private internalCommand: {
-    create?: (config: any, container) => void
-    build?: (config: any, container) => void
-    serve?: (config: any, container) => void
-  } = {}
-
-  constructor(cfg: IContainerConfig = {
-    outputRoot: '',
-    artifactRoot: '',
-    plugins:  [],
-    autoClean: false,
-  }) {
-    this._config = R.mergeRight(this._config, cfg)
-
-    const plugins = cfg.plugins || []
-
-    // 注册构建命令
-    R.forEach(([plugin, pluginOptions = {}]) => {
-
-      if (plugin instanceof Function) {
-        plugin = new plugin(pluginOptions)
-      }
-
-      // 为构建容器注册插件
-      plugin.apply(this)
-
-      // plugins里最后一个实现了相关方法的plugin会生效
-      plugin.create && (this.internalCommand.create = plugin.create.bind(plugin))
-      plugin.build && (this.internalCommand.build = plugin.build.bind(plugin))
-      plugin.serve && (this.internalCommand.serve = plugin.serve.bind(plugin))
-
-    })(plugins)
-  }
-
-  /**
-   * 
-   */
-  public async create(): Promise<void> {
-
-    this.hooks.setContext.call(this.context)
-
-    const templates: Array<[{
-      template,
-      renderer,
-    }, {[prop: string]: any}]> = [] 
-
-
-    type source = string
-    type target = string
-    const linkpaths: Array<[source, target]> = []
-
-
-    this.hooks.addTemplates.call(templates)
-    this.hooks.addLinks.call(linkpaths)
-
-
-    // 如果插件实现了命令，则优先调用
-    if (this.internalCommand.create) {
-      return this.internalCommand.create({templates, linkpaths}, this) 
-    }
-
-    await Promise.all(R.map(([{template, renderer}, data = {}]) => {
-      if (fs.statSync(template).isFile()) {
-        return renderFile(template, data, {sourceRoot: '/', distRoot: this.config.outputRoot, renderAs: renderer})
-      } else {
-        const distRoot: string = path.resolve(this.config.outputRoot, renderer)
-        return renderDir(template, data, {distRoot})
-      }
-    })(templates))
-
-    await Promise.all(R.map(({source, target}) => {
-      const distTarget: string = path.resolve(this.config.outputRoot, target)
-      return linkDir(source, distTarget)
-    })(linkpaths))
-    
-
-    // 容器创建成功后进行对于容器文件进行二次加工
-    this.hooks.afterContainerCreated.call()
-
-    return 
-  }
-
-  /**
-   * 构建资源产物
-   */
-  public async build() {
-
-    // 清空stylus上下文，保证每一次构建都是全新的stylus
-    // delete require.cache['stylus']
-    const stylusConfig = {
-      plugins: []
-    }
-    const babelConfig = {
-      plugins: []
-    }
-    const postcssConfig = {
-      plugins: []
-    }
-
-    // [from, to]
-    const aliasMapper = new Set<[string, string]>()
-    this.hooks.setAliasMapper.call(aliasMapper)
-
-    // @fixme 需要对stylus的重复配置做清空动作
-    this.hooks.extendsStylus.call(stylusConfig)
-    this.hooks.extendsBabelConfig.call(babelConfig)
-    this.hooks.extendsPostcssConfig.call(postcssConfig)
-    
-    // 如果插件实现了命令，则优先调用
-    if (this.internalCommand.build) {
-      return this.internalCommand.build({babelConfig, postcssConfig, stylusConfig, aliasMapper}, this) 
-    }
-    return this.hooks.setBuildTasks.promise({babelConfig, postcssConfig, stylusConfig, aliasMapper})
-  }
-
-
-  /**
-   * 开启调试
-   */
-  public async serve() {
-    
-    const stylusConfig = {
-      plugins: []
-    }
-    const babelConfig = {
-      plugins: []
-    }
-    const postcssConfig = {
-      plugins: []
-    }
-    const aliasMapper = new Set<[string, string]>()
-
-    this.hooks.setAliasMapper.call(aliasMapper)
-    // @fixme 需要对stylus的重复配置做清空动作
-    this.hooks.extendsStylus.call(stylusConfig)
-    this.hooks.extendsBabelConfig.call(babelConfig)
-    this.hooks.extendsPostcssConfig.call(postcssConfig)
-
-    // 如果插件实现了命令，则优先调用
-    if (this.internalCommand.serve) {
-      return this.internalCommand.serve({babelConfig, postcssConfig, stylusConfig, aliasMapper}, this) 
-    }
-    return this.hooks.setServeTasks.promise({babelConfig, postcssConfig, stylusConfig, aliasMapper})
-  }
-
-  /**
-   * 清理构建容器
-   */
-  public destory() {
-    fs.removeSync(this.config.outputRoot)
-    return this
-  }
-  
-  /**
-   * 删除构建产物
-   */
-  public clean() {
-    fs.removeSync(this.config.artifactRoot)
-    return this
+    )
   }
 }

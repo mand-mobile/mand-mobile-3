@@ -3,14 +3,14 @@
   "version": "3.1.0-alpha.0",
   "description": "mand-mobile platform builder",
   "main": "lib/index.js",
+  "files": ["lib", "platform"],
   "scripts": {
     "test":
       "SRPC_DEBUG=true npx jest --coverage test/plugin-vueify-core.spec.ts",
     "test:watch":
       "npx jest --coverage  --watch --collectCoverage=false --runInBand --detectOpenHandles",
     "prebuild": "rm -fr lib",
-    "build":
-      "tsc && cp -r src/builtin-plugins/templates lib/builtin-plugins/templates",
+    "build": "tsc",
     "build:watch": "chokidar \"src/**/*\" -c \"npm run build\""
   },
   "jest": {
@@ -41,8 +41,6 @@
     "@dcloudio/vue-cli-plugin-uni-optimize": "^2.0.0-29820201110001",
     "@dcloudio/webpack-uni-mp-loader": "^2.0.0-29820201110001",
     "@dcloudio/webpack-uni-pages-loader": "^2.0.0-29820201110001",
-    "@mand-mobile/components": "^3.1.0-alpha.0",
-    "@mand-mobile/platform-runtime": "^3.1.0-alpha.0",
     "@rollup/plugin-alias": "^3.1.1",
     "@rollup/plugin-babel": "^5.0.4",
     "@rollup/plugin-node-resolve": "^8.4.0",
@@ -87,6 +85,7 @@
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-uglify": "^6.0.4",
     "rollup-plugin-vue": "5.1.9",
+    "scoped-regex": "^2.1.0",
     "stylus": "^0.54.8",
     "stylus-loader": "^3.0.2",
     "sugarss": "^3.0.1",
@@ -108,7 +107,9 @@
     "@mand-mobile/shared": "^3.1.0-alpha.2",
     "chokidar-cli": "^2.1.0",
     "copyfiles": "^2.3.0",
-    "jest": "^26.4.2"
+    "jest": "^26.4.2",
+    "poststylus": "^1.0.1",
+    "webpackbar": "^5.0.0-3"
   },
   "directories": {
     "test": "test"
