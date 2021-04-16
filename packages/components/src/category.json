@@ -1,0 +1,7 @@
+[
+  { "name": "Basic", "category": "basic", "text": "基础组件" },
+  { "name": "Business", "category": "business", "text": "业务组件" },
+  { "name": "Feedback", "category": "feedback", "text": "操作反馈" },
+  { "name": "Form", "category": "form", "text": "表单" },
+  { "name": "Gesture", "category": "gesture", "text": "手势操作" }
+]
