@@ -1,0 +1,16 @@
+{
+	"name": "Mand Mobile",
+	"appid": "",
+	"description": "A mobile UI toolkit compatible with multiple platforms, based on Vue DSL, designed for financial scenarios",
+	"versionName": "1.0.0",
+	"versionCode": "100",
+	"transformPx": true,
+
+	"mp-weixin": {
+		"appid": "wx38b5e6f7d2281a0c",
+		"setting": {
+			"urlCheck": false
+		},
+		"usingComponents": true
+	}
+}

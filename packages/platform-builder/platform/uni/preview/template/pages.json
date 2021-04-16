@@ -1,0 +1,22 @@
+{
+  <% if (!target) { %>
+  "pages": [
+    { "path": "pages/category" }
+    <% category.forEach(item => { %>
+    <% item.list.forEach(component => { %>
+    ,{"path": "<%- item.category %>/pages/<%- component.dashedStyledName %>"}
+    <%}) %>
+    <%}) %>
+  ],
+  <% }  else { %>
+  "pages": [
+    { "path": "pages/index" }
+  ],
+  <% } %>
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "Mand Mobile",
+    "navigationBarBackgroundColor": "#000",
+    "backgroundColor": "#f3f4f5"
+  }
+}
