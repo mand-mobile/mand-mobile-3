@@ -662,6 +662,8 @@ export default {
   .md-input-item_input,
   .md-input-item_fake
     padding-top 20px
+  .md-input-item_fake
+    line-height md-input-item-height - 20px
 // .md-input-item  
 //   .md-field-item_content_control
 //     display flex
