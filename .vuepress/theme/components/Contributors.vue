@@ -27,7 +27,7 @@ export default {
       default: 'mand-mobile'
     },
     repo: {
-      default: 'mand-mobile-next'
+      default: 'mand-mobile-3'
     },
     fileName: {
       default: '/packages/components/src/button/README.md'
