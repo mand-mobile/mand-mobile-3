@@ -11,7 +11,13 @@ permalink: /packages/components/development
 克隆本仓库后，在项目根目录下执行
 
 ```sh
-$ npm run bootstrap
+npm i
+npm run bootstrap
+
+# or
+
+yarn
+yarn bootstrap
 ```
 
 ### 提交代码
@@ -22,23 +28,23 @@ $ npm run bootstrap
 
 ```sh
 # 启动工程, 安装依赖
-$ npm run bootstrap
+npm run bootstrap
 
 # 调试工程， 当前阶段由于有较多的组件未通过验收，建议使用单个组件预览调试
-$ npm run serve-single <component-name>
+npm run serve-single <component-name>
 
 # 发布预发(非稳定)包
-$ npm run pub:prerelease
+npm run pub:prerelease
 
 # 发布正式包
-$ npm run pub
+npm run pub
 
 
 # 测试组件,可在最后输入组件名称用于调试单个组件
-$ npm run test:components <button-name>
+npm run test:components <button-name>
 
 # 升级对应测试用例的snapshot, 以button为例
-$ cd packages/components && npx jest --updateSnapshot src/button/test/demo.spec.js
+cd packages/components && npx jest --updateSnapshot src/button/test/demo.spec.js
 ```
 
 :tipping_hand_man:默认在`packages/examples/dist/development/mp-weixin`目录下进行uni组件的调试和预览
@@ -82,7 +88,7 @@ packages
 
 ## BEM 书写规范
 
-`mand-mobile-next` 采用 `BEM` 的 `CSS` 命名约定。大部分情况下，`HTML` 标签都要有自己的类名。
+`mand-mobile@3` 采用 `BEM` 的 `CSS` 命名约定。大部分情况下，`HTML` 标签都要有自己的类名。
 - `BEM` 代表 **块（block），元素（element），修饰符（modifier）**。  
 - 拓展关系
   - `-` 中划线，做连字符使用，无实际意义。

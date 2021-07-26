@@ -1,17 +1,8 @@
-# `mand-mobile-next`
-
-## Install
-
-> yarn add mand-mobile-next
-
-or 
-
-> npm install mand-mobile-next
-
+# `mand-mobile@3.0`
 
 ## Docs
 
-目前API整体和[mand-mobile V2.0](https://didi.github.io/mand-mobile/#/zh-CN/home)保持一致
+目前API整体和[mand-mobile v2.0](https://didi.github.io/mand-mobile/#/zh-CN/home)保持一致
 
 ## 引用
 

@@ -39,7 +39,7 @@ module.exports = {
   themeConfig: {
     version: packageInfo.version,
     logo: 'https://pt-starimg.didistatic.com/static/starimg/img/ySOsAunfGm1610683661213.png',
-    repo: 'https://github.com/mand-mobile/mand-mobile-next',
+    repo: 'https://github.com/mand-mobile/mand-mobile-3',
     demoConfig: {
       shadowMode: false
     },
@@ -51,7 +51,7 @@ module.exports = {
           { text: '组件', link: '/packages/components/', redirect: '/packages/components/development' },
           { text: '模块', link: '/packages/modules/', redirect: '/packages/modules/platform-builder' },
           { text: '2.x', link: 'https://didi.github.io/mand-mobile' },
-          { text: 'Github', link: 'https://github.com/mand-mobile/mand-mobile-next' },
+          { text: 'Github', link: 'https://github.com/mand-mobile/mand-mobile-3' },
         ],
         sidebar: {
           '/packages/components/': [
@@ -93,7 +93,7 @@ module.exports = {
       //     { text: 'Component', link: '/en-US/packages/components/', redirect: '/en-US/packages/components/development' },
       //     { text: 'Platform', link: '/en-US/packages/platform', redirect: '/en-US/packages/platform' },
       //     { text: '2.x', link: 'https://didi.github.io/mand-mobile' },
-      //     { text: 'Github', link: 'https://github.com/mand-mobile/mand-mobile-next' },
+      //     { text: 'Github', link: 'https://github.com/mand-mobile/mand-mobile-3' },
       //   ],
       //   sidebar: {
       //     '/en-US/packages/components/': [

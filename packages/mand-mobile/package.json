@@ -1,6 +1,6 @@
 {
-  "name": "mand-mobile-next",
-  "version": "3.1.0-alpha.0",
+  "name": "mand-mobile",
+  "version": "3.0.0-alpha.0",
   "description": "mand-mobile",
   "scripts": {
     "prebuild": "npm run clean:workspace",
