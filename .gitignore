@@ -31,3 +31,6 @@ dist
 lib
 lib-vw
 packages/examples/bundle
+
+# test
+**/test/__fixtures__
