@@ -2,7 +2,7 @@
 import WebpackBar, {Reporter} from 'webpackbar'
 import Consola from 'consola'
 
-export const consola = Consola.withTag('Mand Mobile Next')
+export const consola = Consola.withTag('Mand Mobile')
 
 export default function (platform) {
   return new WebpackBar({
