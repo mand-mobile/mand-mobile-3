@@ -1,5 +1,4 @@
 import * as path from 'path'
-import Config from 'webpack-chain'
 import merge from 'webpack-merge'
 import defaultsDeep from 'lodash.defaultsdeep'
 import createWebpackBar from './webpack-plugins/webpackbar'
@@ -29,17 +28,19 @@ export default class Options {
 
     const {vueOptions} = this.options
 
-    if (vueOptions.chainWebpack) {
-      this.webpackChainFns.push(vueOptions.chainWebpack)
-    }
     if (vueOptions.configureWebpack) {
-      this.webpackRawConfigFns.push(vueOptions.configureWebpack)
+      let configureWebpack = vueOptions.configureWebpack
+      configureWebpack = typeof configureWebpack === 'object' ?
+        {...configureWebpack} : configureWebpack
+      this.webpackRawConfigFns.push(configureWebpack)
     }
 
+    // chainWebpack先于configureWebpack执行，最后的merge在configureWebpack中
     vueOptions.configureWebpack = config => {
-      const userConfig = this.resolveWebpackConfig()
+      // 合并执行configureWebpack，得到用户configureWebpack配置
+      const userConfig = this.resolveWebpackConfig() 
+      // 用户configureWebpack配置与其它配置（默认配置、chainWebpak配置等）
       const webpackConfig = this.setInlineWebpackConfig(userConfig, config)
-      delete vueOptions.chainWebpack
       return webpackConfig
     }
   }
@@ -86,25 +87,17 @@ export default class Options {
   }
 
   resolveWebpackConfig() {
-    // apply chains
-    const chainableConfig = new Config()
-    this.webpackChainFns.forEach(fn => fn(chainableConfig))
+    let config = {}
 
-    // get raw config
-    let config = chainableConfig.toConfig()
-
-    // apply raw config fns
     this.webpackRawConfigFns.forEach(fn => {
       if (typeof fn === 'function') {
-        // function with optional return value
         const res = fn(config)
         if (res) config = merge(config, res)
       } else if (fn) {
-        // merge literal values
         config = merge(config, fn)
       }
     })
-
+    
     return config
   }
 }
