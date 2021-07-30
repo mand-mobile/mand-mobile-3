@@ -1,6 +1,6 @@
 {
-  "name": "mand-mobile-next",
-  "version": "3.1.0-alpha.0",
+  "name": "mand-mobile",
+  "version": "3.0.0-alpha.0",
   "description": "mand-mobile",
   "scripts": {
     "prebuild": "npm run clean:workspace",
@@ -23,10 +23,10 @@
   },
   "main": "web/bundle/mand-mobile.umd.js",
   "module": "web/bundle/mand-mobile.esm.js",
-  "files": ["uni", "web", "package.json"],
+  "files": ["uni", "web"],
   "dependencies": {
     "@mand-mobile/components": "^3.1.0-alpha.0",
-    "@mand-mobile/platform": "^3.0.1-alpha.9",
+    "@mand-mobile/platform-builder": "^3.1.0-alpha.0",
     "@mand-mobile/shared": "^3.1.0-alpha.0",
     "@vue/cli": "^4.5.7",
     "find": "^0.3.0",

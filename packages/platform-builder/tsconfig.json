@@ -12,7 +12,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "types": ["node", "jest"],
     "outDir": "lib",
-    "declaration": false,
+    "declaration": true,
     "resolveJsonModule": true,
     "rootDir": "src",
     "lib": ["ES2015", "DOM"]

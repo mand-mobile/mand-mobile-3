@@ -1,10 +1,6 @@
 .DS_Store
 node_modules
-dist
-lib
-lib-vw
-# 这部分目录需要vue cli的generator在每次构建时生成
-.mand-mobile
+
 # local env files
 .env.local
 .env.*.local
@@ -16,7 +12,6 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-__temp__
 # Editor directories and files
 .idea
 .vscode
@@ -27,4 +22,12 @@ __temp__
 *.sw?
 coverage
 
+# Intermediate generation
+.mand-mobile
+.temp
+
+# Ouptut
+dist
+lib
+lib-vw
 packages/examples/bundle

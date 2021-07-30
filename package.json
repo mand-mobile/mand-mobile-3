@@ -1,21 +1,20 @@
 {
   "version": "0.1.0",
-  "private": true,
+  "license": "Apache",
   "scripts": {
     "cz": "npx git-cz",
     "prebootstrap": "lerna clean",
     "bootstrap": "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn && lerna exec --no-bail PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn install -- --ignore-scripts && npm run build",
-    "build": "lerna link && lerna exec --bail=false npm run build --scope '{@mand-mobile/platform-builder,@mand-mobile/platform-runtime,@mand-mobile/scroller,@mand-mobile/shared,@mand-mobile/vue-cli-plugin-builder}'",
     "serve-all": "cd packages/examples && npm run serve --",
     "serve-single": "cd packages/examples && npm run serve-single --",
     "serve-single:web": "cd packages/examples && npm run serve-single:web --",
     "serve-single:uni": "cd packages/examples && npm run serve-single:uni --",
     "serve:web": "cd packages/examples && npm run serve:web --",
     "serve:uni": "cd packages/examples && npm run serve:uni --",
+    "build": "lerna link && lerna exec --bail=false npm run build --scope '{@mand-mobile/platform-builder,@mand-mobile/platform-runtime,@mand-mobile/scroller,@mand-mobile/shared,@mand-mobile/vue-cli-plugin-builder}'",
     "test:components": "cd packages/components && npm run test",
     "pub": "npm run bootstrap && lerna publish --conventional-commits",
     "pub:prerelease": "npm run bootstrap &&  lerna publish --conventional-commits --cd-version=prerelease --preid=alpha --npm-tag=alpha",
-    "build:uni-component": "cd packages/platform && npm run build:uni-component",
     "docs:dev": "vuepress dev",
     "docs:build": "vuepress build"
   },
