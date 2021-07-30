@@ -27,11 +27,13 @@ const autoprefixer = require('autoprefixer')({})
 //   propWhiteList: []
 // }
 
+const {defineOptions} = require('../../../lib')
+
 function resolve(dir) {
   return path.join(process.env.MAND_CONTEXT, dir)
 }
 
-module.exports = {
+module.exports = defineOptions({
   componentPath: '~@mand-mobile/components/src',
   vueOptions: {
     devServer: {
@@ -74,4 +76,4 @@ module.exports = {
       })
     },
   },
-}
+})

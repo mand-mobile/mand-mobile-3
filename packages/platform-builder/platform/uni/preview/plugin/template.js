@@ -11,7 +11,7 @@ module.exports = function (api, {target, context}) {
   }
 
   if (target) { // 使用渲染动态模板渲染
-    api.registerTemplate(componentTemplate, `pages/index.vue`, {
+    api.registerTemplate(componentTemplate, 'pages/index.vue', {
       component: findComponent(target)
     })
   } else { // 基于类目拆包 [{category: 'basic', list: [...]}]

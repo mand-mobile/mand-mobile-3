@@ -9,7 +9,7 @@ module.exports = function (api, {target, context}) {
 
   // 使用渲染动态模板渲染
   if (target) {
-    api.registerTemplate(template, `pages/demo-group.vue`, {
+    api.registerTemplate(template, 'pages/demo-group.vue', {
       component: findComponent(target)
     })
   } else {

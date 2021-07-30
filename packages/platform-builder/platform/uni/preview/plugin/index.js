@@ -14,7 +14,7 @@ module.exports = function (api, {pkgContext, projectOptions}) {
 
   api.registerLinks(path.resolve(__dirname, '../../../../node_modules'), 'node_modules')
 
-  api.registerCommand('serve', (args, rawArgv) => {
+  api.registerCommand('service', (args, rawArgv) => {
     // process.env.UNI_CLI_CONTEXT = pkgContext 
     process.env.UNI_INPUT_DIR = path.resolve(pkgContext, `${tempDir}/uni`)
     process.env.UNI_OUTPUT_DIR = path.resolve(pkgContext, args.output || outputDir)
