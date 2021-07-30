@@ -1,10 +1,14 @@
 import * as fs from 'fs'
 import fsExtra from 'fs-extra'
+import find from 'find'
 
 import Plugin from './Plugin'
-import Options from './Options'
+import Options, {defineOptions} from './Options'
+import type {OptionsType} from './Options'
 import {
   checkPlatformValid,
+  resolvePackagePath,
+  resolvePlatforms,
   resolvePlugins,
   resolveOptions,
   resolveTemplates,
@@ -20,6 +24,8 @@ export interface IBuilderCommands {
   [name: string]: (...args) => Promise<void>
 }
 
+export {defineOptions}
+
 export default class Builder {
   public plugins: any
   public projectOptions: any
@@ -27,19 +33,23 @@ export default class Builder {
   public context: any
   public pkgContext: string
   public platform: string
+  public platformList: Array<string>
   public service: string
+  public _plugins: Array<string>
   public platformPath: string
   public projectDir: string
   public initialized: boolean
   public linkFiles: Array<{source: string, target: string}>
   public commands: IBuilderCommands
 
-  constructor (context, {platform, service, platformPath}) {
+  constructor (context, {platform, service, plugins, platformPath}) {
     checkPlatformValid(platform, context, platformPath)
     this.initialized = false
     this.pkgContext = context
     this.platform = platform
+    this.platformList = []
     this.service = service
+    this._plugins = plugins || []
     this.commands = {}
     this.context = {}
     this.linkFiles = []
@@ -57,9 +67,9 @@ export default class Builder {
     this.initialized = true
     
     const userOptions = this.loadUserOptions()
-    const projectOptions = new Options(userOptions, this).options
+    const projectOptions: OptionsType = new Options(userOptions, this).options
     const projectDir = `${projectOptions.tempDir}/${this.platform}`
-
+    
     this.projectOptions = projectOptions
     this.projectDir = projectDir
 
@@ -68,6 +78,7 @@ export default class Builder {
       template: this.resolveTemplates(),
       renderAs: '.'
     }]
+    this.platformList = resolvePlatforms(this.platformPath, this.pkgContext)
 
     // apply plugins.
     this.plugins.forEach(({ id, apply }) => {
@@ -75,6 +86,7 @@ export default class Builder {
       apply(pluginIns, {
         target,
         platform: this.platform,
+        platformList: this.platformList,
         service: this.service,
         pkgContext: this.pkgContext,
         context: this.context,
@@ -117,9 +129,11 @@ export default class Builder {
     const builtInPlugins = [
       './builtin-plugins/platform-setup',
       './builtin-plugins/component-setup',
+      ...this._plugins.map(
+        plugin => resolvePackagePath(plugin, pkgContext)
+      )
     ]
     const platformPlugins = resolvePlugins(`${platformPath}/${platform}/${service}/plugin`, pkgContext)
-
     return (builtInPlugins.concat(platformPlugins)).map(id => idToPlugin(id))
   }
 
@@ -159,7 +173,7 @@ export default class Builder {
           ...templateData
         }
         if (!fs.existsSync(template)) {
-          warn(`Missing template ${chalk.bold(template)}: rendering [${renderAs}]`)
+          // warn(`Missing template ${chalk.bold(template)}: rendering [${renderAs}]`)
           return
         }
         if (fs.statSync(template).isFile()) {

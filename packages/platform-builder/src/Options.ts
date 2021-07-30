@@ -1,18 +1,33 @@
 import * as path from 'path'
 import merge from 'webpack-merge'
 import defaultsDeep from 'lodash.defaultsdeep'
+import type {ProjectOptions} from '@vue/cli-service/types'
+
 import createWebpackBar from './webpack-plugins/webpackbar'
 
-const DEFAULT_OPTIONS = {
+export interface OptionsType {
   // 生成中间临时文件目录
-  tempDir: '__temp__',
+  tempDir?: string;
   // 构建产出静态文件目录
-  outputDir: 'dist',
+  outputDir?: string;
   // component源码所在目录 支持绝对路径、相对路径和依赖包(以~开头)
-  componentPath: '@mand-mobile/components/src',
+  componentPath?: string;
   // 默认入口文件
+  mainEntry?: string;
+  // Vue Cli配置
+  vueOptions?: ProjectOptions
+} 
+
+const DEFAULT_OPTIONS: OptionsType = {
+  tempDir: '.temp',
+  outputDir: 'dist',
+  componentPath: '@mand-mobile/components/src',
   mainEntry: 'main.js',
   vueOptions: {}
+}
+
+export function defineOptions (options: OptionsType): OptionsType {
+  return options
 }
 
 export default class Options {

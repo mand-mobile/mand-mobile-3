@@ -225,6 +225,18 @@ export function resolvePlugins (pluginPath, context) {
   }
 }
 
+export function resolvePlatforms (platformPath, context) {
+  platformPath = resolvePackagePath(platformPath, context)
+  try {
+    return fs.readdirSync(platformPath)
+  } catch (err) {
+    error(
+      `Can not find platforms in ${chalk.bold(platformPath)}: resolvePlatforms`
+    )
+    process.exit(1)
+  }
+}
+
 export function resolveOptions (configPath, context) {
   let fileConfig = {}
 
@@ -263,4 +275,37 @@ export function resolveFileLink (sourceDir, targetDir): Promise<void> {
     sourceDir,
     targetDir,
   ])
+}
+
+/**
+ * 过滤特定平台文件, 如*.web.js，*.uni.vue
+ */
+export function filterPlatformedFiles (
+  files,
+  platform,
+  platformList = ['web', 'uni'],
+  filter?: (file: string) => boolean
+): Array<{path: string, name: string}> {
+  if (typeof platformList === 'function') {
+    filter = platformList
+    platformList = ['web', 'uni']
+  }
+  const platformFileReg = new RegExp(`^.*\.(${platformList.join('|')})($|\.(\\w+)$)`, 'ig')
+  const specialPlatformFileReg = new RegExp(`^.*\.(${platform})($|\.(\\w+)$)`, 'ig')
+
+  return files.filter(file => {
+    platformFileReg.lastIndex = 0
+    specialPlatformFileReg.lastIndex = 0
+    const isPlatformFile = platformFileReg.test(file)
+    const isSpecialPlatformFile = specialPlatformFileReg.test(file)
+    const isCustomFilter = filter ? filter(file) : true
+    return isCustomFilter && (!isPlatformFile || (isPlatformFile && isSpecialPlatformFile))
+  }).map(file => {
+    const platformPart = `.${platform}`
+    let name = file
+    if (!!~file.indexOf(platformPart)) {
+      name = file.replace(platformPart, '')
+    }
+    return { path: file, name }
+  })
 }

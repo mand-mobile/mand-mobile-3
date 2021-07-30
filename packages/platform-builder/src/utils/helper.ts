@@ -1,18 +1,14 @@
-const R = require('ramda')
-const path = require('path')
-const fs = require('fs')
-const globby = require('globby')
-const anymatch = require('anymatch')
+import _ from 'lodash/fp'
+import * as path from 'path'
+import * as fs from 'fs-extra'
+import * as assert from 'assert'
+import * as find from 'find'
 
 const rimraf = require('rimraf')
-
-const find = require('find')
 const mv = require('mv')
 
 
-/** -----------------------------------------utils --------------------------------------------------------- */
-
-export const packagesResolver = R.curry((componentName, suffix) => path.join(path.dirname(require.resolve(componentName)), suffix))
+// export const packagesResolver = _.curry((componentName, suffix) => path.join(path.dirname(require.resolve(componentName)), suffix))
 
 
 export const toUpperName = str => {
@@ -32,14 +28,14 @@ export function safeGetValue (source: any, key: string, defaults: any = ''): any
   return factory(source, defaults)
 }
 
-
-/**
- * 
- * @param Options
- * @param Options.platfrom [web|uni]
- * @param Options.componentSOurce [web|uni]
- *  
- */
+export function bufferToStr (buf: Buffer): string {
+  assert.strictEqual(buf instanceof Buffer, true, 'params must be Buffer')
+  return buf.toString('utf8')
+}
+export function strToBuffer (str: String): Buffer {
+  assert.strictEqual(typeof str === 'string', true, 'params must be string')
+  return Buffer.from(str, 'utf8')
+}
 
 // export function resolveComponents({platform: PLATFORM, componentSource}): Array<IComponents> {
 
@@ -144,7 +140,6 @@ export function safeGetValue (source: any, key: string, defaults: any = ''): any
 
 
 export function componentRewrite({platform, target, done}) {
-
   find.file(/\.(js|vue|ts)$/, target, function(files) {
     files.forEach(file => {
       const dirname = path.dirname(file)
@@ -198,20 +193,20 @@ export function componentRewrite({platform, target, done}) {
 // }
 
 
-export const chainExtendsHandler = ({stylusConfig, postcssConfig, babelConfig}) => (chain) => {
-  const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
+// export const chainExtendsHandler = ({stylusConfig, postcssConfig, babelConfig}) => (chain) => {
+//   const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
 
-  // 针对不同类型的stylus样式进行扩展传入的loader options
-  R.forEach(type => chain.module.rule('stylus').oneOf(type).use('stylus-loader').tap(R.mergeLeft(stylusConfig)))(types)
+//   // 针对不同类型的stylus样式进行扩展传入的loader options
+//   R.forEach(type => chain.module.rule('stylus').oneOf(type).use('stylus-loader').tap(R.mergeLeft(stylusConfig)))(types)
 
-  // 设置用户需要的postcss options
-  // @todo 需要放置plugins被多次合并覆盖
-  // R.forEach(type => chain.module.rule('postcss').oneOf(type).use('postcss-loader').tap(R.mergeLeft(postcssConfig)))(types)
+//   // 设置用户需要的postcss options
+//   // @todo 需要放置plugins被多次合并覆盖
+//   // R.forEach(type => chain.module.rule('postcss').oneOf(type).use('postcss-loader').tap(R.mergeLeft(postcssConfig)))(types)
   
-  R.forEach(type => chain.module.rule('postcss').oneOf(type).use('postcss-loader').tap((opt) => {
-    opt.plugins = opt.plugins || []
-    opt.plugins.push(...postcssConfig.plugins)
-    return opt
-  }))(types)
+//   R.forEach(type => chain.module.rule('postcss').oneOf(type).use('postcss-loader').tap((opt) => {
+//     opt.plugins = opt.plugins || []
+//     opt.plugins.push(...postcssConfig.plugins)
+//     return opt
+//   }))(types)
 
-}
+// }
