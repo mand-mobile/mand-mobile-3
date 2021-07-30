@@ -6,5 +6,5 @@ export = (api: any) => async (args: any, rawArgv: any) => {
     platform: args.platform,
     platformPath: '~@mand-mobile/platform-builder/platform'
   })
-  builder.run('serve', args, rawArgv)
+  builder.run('service', args, rawArgv)
 }
