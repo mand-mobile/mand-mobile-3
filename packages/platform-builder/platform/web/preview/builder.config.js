@@ -71,7 +71,7 @@ module.exports = defineOptions({
     },
     chainWebpack: config => {
       config.plugin('html').tap(args => {
-        args[0].template = resolve('/__temp__/web/public/index.html')
+        args[0].template = resolve('/.temp/web/public/index.html')
         return args
       })
     },
