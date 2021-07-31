@@ -33,6 +33,40 @@
 - [ ] Upgrade Vue to **v3.0**
 - [ ] Refactor some components based on **Composition API**
 
+## Quick Start
+
+### Bootstrap
+
+```bash
+yarn install
+yarn bootstrap
+```
+
+### Dev preview
+
+* Platform
+
+```bash
+# all
+yarn serve-all
+
+# web
+yarn serve:web
+
+# uni
+yarn serve:uni
+```
+
+* Single Component
+
+```bash
+yarn serve-single:web button
+
+# or
+
+yarn serve-single:uni button
+```
+
 ## Contribution
 
 See [Development Guide](./DEVELOPMENT.md).
