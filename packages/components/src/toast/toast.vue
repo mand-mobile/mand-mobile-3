@@ -1,5 +1,5 @@
 <template>
-  <div class="md-toast" :class="[position]">
+  <div class="md-toast" :class="[`md-toast-${position}`, `md-toast-${direction}`]">
     <md-popup
       class="md-popup"
       :value="visible"
@@ -18,7 +18,7 @@
           class="md-icon"
           :name="innerIcon"
           :svg="iconSvg"
-          size="lg"
+          size="md"
         />
         <div class="md-toast_text" v-if="content" v-text="content"></div>
       </div>
@@ -65,6 +65,11 @@ export default {
       type: String,
       default: 'center',
     },
+    direction: {
+      // horizontal, vertical
+      type: String,
+      default: 'horizontal',
+    },
     hasMask: {
       type: Boolean,
       default: false,
@@ -82,16 +87,12 @@ export default {
       switch (this.type) {
         case 'info':
           return this.icon || 'info'
-          break
         case 'succeed':
           return this.icon || 'success'
-          break
         case 'failed':
           return this.icon || 'fail'
-          break
         case 'loading':
           return this.icon || 'ring'
-          break
         default:
           return this.icon
       }
@@ -148,6 +149,21 @@ export default {
     color md-toast-color
   .md-icon + .md-toast_text
     margin-left md-h-gap-sm
+  &-vertical
+    .md-toast_content
+      display flex
+      flex-direction column
+      justify-content center
+      width 300px
+      height 240px
+      .md-icon
+        width 60px
+        height 60px
+        font-size 60px
+      .md-toast_text
+        margin-top 32px
+        margin-left 0
+
 
 .md-toast_content
   display inline-flex

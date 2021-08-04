@@ -15,6 +15,7 @@ function ToastFactory() {
     iconSvg = false,
     duration = 3000,
     position = 'center',
+    direction = 'horizontal',
     hasMask = false,
     parentNode = mdDocument.body,
   }) {
@@ -29,6 +30,7 @@ function ToastFactory() {
           iconSvg,
           duration,
           position,
+          direction,
           hasMask,
         },
       }).$mount()
@@ -43,6 +45,7 @@ function ToastFactory() {
     vm.iconSvg = iconSvg
     vm.duration = duration
     vm.position = position
+    vm.direction = direction
     vm.hasMask = hasMask
     // vm.visible = true
     // vm.fire()
@@ -91,6 +94,16 @@ function ToastFactory() {
       parentNode,
     })
   }
+  Toast.infoV = (icon = 'info-solid', content = '', duration = 3000, hasMask = false, parentNode = mdDocument.body) => {
+    return generate({
+      icon,
+      content,
+      duration,
+      hasMask,
+      parentNode,
+      direction: 'vertical',
+    })
+  }
 
   /**
    * Show succeed toast
@@ -108,6 +121,16 @@ function ToastFactory() {
       duration,
       hasMask,
       parentNode,
+    })
+  }
+  Toast.succeedV = (content = '', duration = 3000, hasMask = false, parentNode = mdDocument.body) => {
+    return generate({
+      icon: 'success',
+      content,
+      duration,
+      hasMask,
+      parentNode,
+      direction: 'vertical',
     })
   }
 
@@ -129,6 +152,16 @@ function ToastFactory() {
       parentNode,
     })
   }
+  Toast.failedV = (content = '', duration = 3000, hasMask = false, parentNode = mdDocument.body) => {
+    return generate({
+      icon: 'fail',
+      content,
+      duration,
+      hasMask,
+      parentNode,
+      direction: 'vertical',
+    })
+  }
 
   /**
    * Show loading toast
@@ -146,6 +179,18 @@ function ToastFactory() {
       duration,
       hasMask,
       parentNode,
+    })
+  }
+
+  Toast.loadingV = (content = '', duration = 0, hasMask = true, parentNode = mdDocument.body) => {
+    return generate({
+      icon: 'ring',
+      iconSvg: true,
+      content,
+      duration,
+      hasMask,
+      parentNode,
+      direction: 'vertical',
     })
   }
 
