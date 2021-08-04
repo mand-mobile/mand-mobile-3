@@ -14,6 +14,7 @@ export = (api: any) => async (args: any, rawArgv: any) => {
     plugins: [
       '~@mand-mobile/platform-builder/lib/builtin-plugins/sfc-build.js',
       '~@mand-mobile/platform-builder/lib/builtin-plugins/vueify-build.js',
+      '~@mand-mobile/platform-builder/lib/builtin-plugins/rollup-build.js',
     ]
   })
   builder.run('service', args, rawArgv)
