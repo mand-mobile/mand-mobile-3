@@ -26,7 +26,7 @@
       <slot name="right">
         {{ addon }}
       </slot>
-      <md-icon v-if="arrow" name="arrow-right" size="md" />
+      <md-icon v-if="arrow" name="arrow" size="md" />
     </div>
     </div>
     <div class="md-cell-item_children"  v-if="slots.children">

@@ -112,7 +112,7 @@ export default {
     },
 
     rightIcon() {
-      return this.mode === 'link' ? 'arrow-right' : 'close'
+      return this.mode === 'link' ? 'arrow' : 'close'
     },
   },
 
@@ -193,7 +193,7 @@ export default {
   align-items center
 
 .md-notice-bar_left
-  padding-right 12px
+  padding-right 16px
 .md-notice-bar_right
   padding-right 32px
 .md-notice-bar--empty

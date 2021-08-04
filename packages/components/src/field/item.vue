@@ -25,7 +25,7 @@
       </div>
       <div class="md-field-item_content_right" v-if="arrow || addon || $slots.right">
         <slot name="right">{{ addon }}</slot>
-        <md-icon v-if="arrow" :name="arrow === true ? 'arrow-right' : arrow" size="md" />
+        <md-icon v-if="arrow" :name="arrow === true ? 'arrow' : arrow" size="md" />
       </div>
     </div>
     <div class="md-field-item_children" :class="customContentClass" v-if="slots.children">

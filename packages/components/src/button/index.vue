@@ -129,7 +129,7 @@ export default {
   text-align center
   border none
   border-radius md-button-radius
-  box-sizing md-border-box
+  box-sizing border-box
   outline none
   transition all .3s
   -webkit-appearance none
