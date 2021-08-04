@@ -12,6 +12,12 @@
     "serve:web": "cd packages/examples && npm run serve:web --",
     "serve:uni": "cd packages/examples && npm run serve:uni --",
     "build": "lerna link && lerna exec --bail=false npm run build --scope '{@mand-mobile/platform-builder,@mand-mobile/platform-runtime,@mand-mobile/scroller,@mand-mobile/shared,@mand-mobile/vue-cli-plugin-builder}'",
+    "build:web-src": "cd packages/mand-mobile && npm run build:web-src",
+    "build:web-lib": "cd packages/mand-mobile && npm run build:web-lib",
+    "build:web-lib-vw": "cd packages/mand-mobile && npm run build:web-lib-vw",
+    "build:web-bundle": "cd packages/mand-mobile && npm run build:web-bundle",
+    "build:uni-src": "cd packages/mand-mobile && npm run build:uni-src",
+    "build:uni-lib": "cd packages/mand-mobile && npm run build:uni-lib",
     "test:components": "cd packages/components && npm run test",
     "pub": "npm run bootstrap && lerna publish --conventional-commits",
     "pub:prerelease": "npm run bootstrap &&  lerna publish --conventional-commits --cd-version=prerelease --preid=alpha --npm-tag=alpha",
@@ -36,7 +42,7 @@
     }
   },
   "lint-staged": {
-    "packages/**/*.{vue,js,json,ts}": [
+    "packages/**/!(template)/*.{vue,js,json,ts}": [
       "aesir lint -s",
       "aesir format -S",
       "git add"
@@ -53,7 +59,6 @@
     "@vue/cli-service": "^3.0.3",
     "aesir-cli": "^0.0.10",
     "ant-design-vue": "^1.6.5",
-    "caniuse-lite": "^1.0.30001205",
     "commitizen": "^4.1.2",
     "cross-env": "^7.0.2",
     "cz-mand-mobile-changelog": "2.0.2",
