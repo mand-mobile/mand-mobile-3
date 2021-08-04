@@ -37,7 +37,11 @@ const spinnerNeon = [
   `                    `,
 ]
 
-export function logWithSpinner (message) {
+export function logWithSpinner (message, options?) {
+  if (typeof message === 'object') {
+    options = message
+    message = ''
+  }
   return ora({
     text: '\n\n',
     spinner: {
@@ -45,7 +49,8 @@ export function logWithSpinner (message) {
       "frames": spinnerNeon.map((t, i) => {
         return `${spinnerMoon[i % 8]}  ${message} ${chalk.dim.italic(t)}`
       })
-    }
+    },
+    ...options
   })
 }
 
