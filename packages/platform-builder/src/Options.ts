@@ -2,6 +2,8 @@ import * as path from 'path'
 import merge from 'webpack-merge'
 import defaultsDeep from 'lodash.defaultsdeep'
 import type {ProjectOptions} from '@vue/cli-service/types'
+import type {BuildOptions} from 'esbuild'
+import type {RollupOptions} from 'rollup'
 
 import createWebpackBar from './webpack-plugins/webpackbar'
 
@@ -16,6 +18,10 @@ export interface OptionsType {
   mainEntry?: string;
   // Vue Cli配置
   vueOptions?: ProjectOptions
+  // esbuild配置
+  esbuildOptions?: BuildOptions
+  // rollup配置
+  rollupOptions?: RollupOptions
 } 
 
 const DEFAULT_OPTIONS: OptionsType = {

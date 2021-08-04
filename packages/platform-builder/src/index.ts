@@ -24,6 +24,14 @@ export interface IBuilderCommands {
   [name: string]: (...args) => Promise<void>
 }
 
+export interface IBuilderOptions {
+  platform: string;
+  platformPath: string;
+  service: string;
+  plugins?: Array<string>;
+}
+
+
 export {defineOptions}
 
 export default class Builder {
@@ -42,7 +50,12 @@ export default class Builder {
   public linkFiles: Array<{source: string, target: string}>
   public commands: IBuilderCommands
 
-  constructor (context, {platform, service, plugins, platformPath}) {
+  constructor (context, {
+    platform,
+    service,
+    platformPath,
+    plugins
+  }: IBuilderOptions) {
     checkPlatformValid(platform, context, platformPath)
     this.initialized = false
     this.pkgContext = context
