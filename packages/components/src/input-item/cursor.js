@@ -47,5 +47,5 @@ export function setCursorsPosition(ctrl, pos) {
       range.moveStart('character', pos)
       range.select()
     }
-  }, 50)
+  }, 0)
 }
