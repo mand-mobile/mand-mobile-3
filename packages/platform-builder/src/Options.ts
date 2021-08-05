@@ -76,6 +76,7 @@ export default class Options {
     const extensions = resolve.extensions || configRef.resolve.extensions
     const alias = resolve.alias || {}
     const plugins = config.plugins || []
+    const watchOptions = config.watchOptions || {}
 
     resolve.extensions = this.setExtensions(extensions, platform)
     configRef.resolve.extensions = [] // 需清空当前索引中的值，否则后添加的特定平台拓展名会被压盖
@@ -85,6 +86,8 @@ export default class Options {
     plugins.push(
       createWebpackBar(platform)
     )
+    
+    watchOptions.ignored = /node_modules\/?(!@mand-mobile|\w+)/
 
     if (mainEntry) {
       config.entry = config.entry || path.resolve(pkgContext, `${tempDir}/${platform}/${mainEntry}`)
@@ -92,6 +95,7 @@ export default class Options {
 
     config.resolve = resolve
     config.plugins = plugins
+    config.watchOptions = watchOptions
 
     return config
   }
