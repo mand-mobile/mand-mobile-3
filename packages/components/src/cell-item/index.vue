@@ -146,9 +146,6 @@ export default {
     text-align center
 
 .md-cell-item_right
-  // #ifdef MP-WEIXIN
-  height 40rpx
-  // #endif
   flex-shrink 0
   margin-left md-h-gap-sm
   display inline-flex
@@ -156,7 +153,7 @@ export default {
   justify-content flex-end
   color md-cell-item-right-color
   font-size md-cell-item-right-font-size
-  .md-icon-arrow-right
+  .md-icon-arrow
     margin-left 6px
     margin-right -6px
     color md-color-text-placeholder
