@@ -13,6 +13,7 @@
 </script>
 
 <style lang="stylus">
-
+page
+	background #f3f4f5
 </style>
 

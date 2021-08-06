@@ -2,37 +2,39 @@
   <div class="md-cg">
     <h1 class="md-cg-title">Mand Mobile 3</h1>
     <h1 class="md-cg-subtitle">面向金融场景的移动端Vue组件库</h1>
-    <div class="md-cg-logo">
+    <!-- <div class="md-cg-logo">
       <img src="//img6.didistatic.com/static/manhattan/mand/docs/mand-logo-black.svg" alt="">
-    </div>
-    <section
-      v-for="(category, i) in components" :key="i"
-      class="cg-category"
-      :class="{'active': category.show}">
-      <div
-        class="cg-category-title"
-        :class="{'active': category.show}"
-        @click="toggleCategory(i, category)">
-        {{ category.name }}&nbsp;&nbsp;<span>{{ category.text }}</span>
-        <md-icon name="arrow-right" size="md"></md-icon>
-      </div>
-      <transition name="slide-fade">
-        <div class="cg-category-list" v-show="category.show">
-          <div class="cg-category-item"
-            v-for="(item, j) in category.list"
-            :key="j"
-            @click="goToComponent(item.path)">
-            <div class="cg-category-item-inner">
-              {{ item.name }} - {{ item.text }}
-              <md-icon name="arrow-right" size="sm"></md-icon>
+    </div> -->
+    <div>
+      <section
+        v-for="(category, i) in components" :key="i"
+        class="cg-category"
+        :class="{'active': category.show}">
+        <div
+          class="cg-category-title"
+          :class="{'active': category.show}"
+          @click="toggleCategory(i, category)">
+          {{ category.name }}&nbsp;&nbsp;<span>{{ category.text }}</span>
+          <md-icon class="md-icon" name="arrow" size="md"></md-icon>
+        </div>
+        <transition name="slide-fade">
+          <div class="cg-category-list" v-show="category.show">
+            <div class="cg-category-item"
+              v-for="(item, j) in category.list"
+              :key="j"
+              @click="goToComponent(category.category, item.path)">
+              <div class="cg-category-item-inner">
+                {{ item.name }} - {{ item.text }}
+                <md-icon class="md-icon" name="arrow" size="sm"></md-icon>
+              </div>
+            </div>
+            <div class="cg-category-item" @click="toggleCategory(i, category)">
+              <div class="cg-category-item-inner close">收起</div>
             </div>
           </div>
-          <div class="cg-category-item" @click="toggleCategory(i, category)">
-            <div class="cg-category-item-inner close">收起</div>
-          </div>
-        </div>
-      </transition>
-    </section>
+        </transition>
+      </section>
+    </div>
     <h1 class="md-cg-copyright">滴滴金融 - FD+ &times; MFE</h1>
   </div>
 </template>
@@ -56,8 +58,11 @@ export default {
       category.show = !category.show
       this.$set(this.components, index, category)
     },
-    goToComponent(path) {
-      this.$router.push(path)
+    goToComponent(category, path) {
+      // this.$router.push(path)
+      wx.navigateTo({
+        url: `/${category}/pages${path}`
+      })
     },
   },
 }
