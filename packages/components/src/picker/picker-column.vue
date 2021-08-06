@@ -196,20 +196,22 @@ export default {
     async $_initColumns(startIndex = 0) {
       this.$_initColumnsIndex()
 
-      let promises = []
-      for (let index = startIndex, len = this.columnLength; index < len; index++) {
-        promises.push(this.$_initColumnScroller(index))
-        // const wheel = await this.$_initColumnScroller(index)
+      const walk = index => {
+        if (index > this.columnLength - 1) {
+          if (!this.isInitialed) {
+            this.isInitialed = true
+            this.$emit('initialed')
+          }
+          return
+        }
+        this.$_initColumnScroller(index).then(() => {
+          walk(++index)
+        })
         // this.$set(this.wheels, index, wheel)
         // this.$_resetScrollingPosition(index)
       }
 
-      Promise.all(promises).then(() => {
-        if (!this.isInitialed) {
-          this.isInitialed = true
-          this.$emit('initialed')
-        }
-      })
+      walk(startIndex)
 
       this.isScrollInitialed = true
     },
