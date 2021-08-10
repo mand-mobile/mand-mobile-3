@@ -1,6 +1,9 @@
 ---
 title: TextareaItem 多行输入框
-preview: https://didi.github.io/mand-mobile/examples/#/TextareaItem
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/textarea-item',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/1OQHAZdVyc1628599966103.png'
+}
 ---
 
 多行文本输入框

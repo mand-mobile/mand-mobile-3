@@ -1,6 +1,9 @@
 ---
 title: Landscape 输入框
-preview: https://didi.github.io/mand-mobile/examples/#/landscape
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/landscape',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/PlS7qSRJJn1628599377503.png'
+}
 ---
 
 用于在浮层中显示广告或说明

@@ -1,6 +1,9 @@
 ---
 title: Steps 步骤条
-preview: https://didi.github.io/mand-mobile/examples/#/steps
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/steps',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/VJ61ucFUNj1628597825497.png'
+}
 ---
 
 用于引导用户按照流程完成任务的导航条，显示当前所在步骤

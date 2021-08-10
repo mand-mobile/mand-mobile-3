@@ -1,6 +1,9 @@
 ---
 title: DatePicker 时间选择器
-preview: https://didi.github.io/mand-mobile/examples/#/date-picker
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/date-picker',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/WnogaMotyf1628598459278.png'
+}
 ---
 
 选择日期或者时间，支持年/月/日/时/分和按照范围选择

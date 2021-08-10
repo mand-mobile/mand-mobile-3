@@ -1,6 +1,9 @@
 ---
 title: Picker 选择器
-preview: https://didi.github.io/mand-mobile/examples/#/picker
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/picker',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/u9qqYDLhJR1628598723406.png'
+}
 ---
 
 滚动多列选择

@@ -1,6 +1,9 @@
 ---
 title: Ruler 刻度尺
-preview: https://didi.github.io/mand-mobile/examples/#/ruler
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/ruler',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/cziDkmD2Kk1628599484434.png'
+}
 ---
 
 可滑动刻度尺

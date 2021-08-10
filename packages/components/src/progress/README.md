@@ -1,6 +1,8 @@
 ---
 title: Progress 进度
-preview: https://didi.github.io/mand-mobile/examples/#/progress
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/progress'
+}
 ---
 
 进度圆环，用于将数据直观地传达给用户

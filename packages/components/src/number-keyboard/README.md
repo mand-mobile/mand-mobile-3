@@ -1,6 +1,9 @@
 ---
 title: NumberKeyboard 数字键盘
-preview: https://didi.github.io/mand-mobile/examples/#/number-keyboard
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/number-keyboard',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/8Ich3VyS5j1628599741214.png'
+}
 ---
 
 一般用于密码，验证码或支付金额输入等金融场景

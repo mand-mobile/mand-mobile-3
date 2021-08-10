@@ -1,6 +1,9 @@
 ---
 title: Stepper 步进器
-preview: https://didi.github.io/mand-mobile/examples/#/stepper
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/stepper',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/c88uedQvpV1628597688551.png'
+}
 ---
 
 增加，减少或修改当前数值

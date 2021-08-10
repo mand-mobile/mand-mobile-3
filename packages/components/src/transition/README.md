@@ -1,6 +1,9 @@
 ---
 title: Transition 动画
-preview: https://didi.github.io/mand-mobile/examples/#/transition
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/transition',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/DZHSjUQvwy1628598956592.png'
+}
 ---
 
 复用动画切换组件

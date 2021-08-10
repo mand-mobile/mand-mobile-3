@@ -1,6 +1,9 @@
 ---
 title: Captcha 验证码
-preview: https://didi.github.io/mand-mobile/examples/#/captcha
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/captcha',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/LLoujAjwlY1628599220149.png'
+}
 ---
 
 验证码校验窗口

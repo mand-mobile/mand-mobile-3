@@ -1,6 +1,9 @@
 ---
 title: Bill 票据
-preview: https://didi.github.io/mand-mobile/examples/#/bill
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/bill',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/0TVOUrmmP51628599087432.png'
+}
 ---
 
 电子账单或票据

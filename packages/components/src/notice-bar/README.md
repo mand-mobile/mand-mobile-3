@@ -1,6 +1,9 @@
 ---
 title: NoticeBar 通告栏
-preview: https://didi.github.io/mand-mobile/examples/#/notice-bar
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/notice-bar',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/HnBEhpqZbC1628597399247.png'
+}
 ---
 
 通常用于系统提醒、活动提醒等通知

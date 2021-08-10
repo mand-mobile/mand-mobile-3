@@ -1,6 +1,9 @@
 ---
 title: Popup 弹出层
-preview: https://didi.github.io/mand-mobile/examples/#/popup
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/popup',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/IFXYHCWTQa1628598782252.png'
+}
 ---
 
 由其他控件触发，屏幕滑出或弹出一块自定义内容区域

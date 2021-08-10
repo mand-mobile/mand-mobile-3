@@ -1,6 +1,9 @@
 ---
 title: Icon 图标
-preview: https://didi.github.io/mand-mobile/examples/#/icon
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/icon',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/1G9k5qefav1628592497443.png'
+}
 ---
 
 IconFont、SVG 图标

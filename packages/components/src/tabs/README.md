@@ -1,6 +1,9 @@
 ---
 title: Tabs 标签页
-preview: https://didi.github.io/mand-mobile/examples/#/tabs
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/tabs',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/MAYUSG70Sd1628598223128.png'
+}
 ---
 
 用于创建包含内容区域的标签页

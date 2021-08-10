@@ -1,6 +1,9 @@
 ---
 title: Skeleton 骨架屏
-preview: https://didi.github.io/mand-mobile/examples/#/skeleton
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/skeleton',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/KdWYNHVV6d1628597615964.png'
+}
 ---
 
 骨架屏，一般用于数据尚未加载前先展示出页面的大致结构的加载状态

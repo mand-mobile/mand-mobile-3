@@ -1,6 +1,9 @@
 ---
 title: Selector 列表选择器
-preview: https://didi.github.io/mand-mobile/examples/#/selector
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/selector',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/Sgl5bXALu41628598830989.png'
+}
 ---
 
 用于弹出列表中选择一项

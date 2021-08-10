@@ -1,6 +1,9 @@
 ---
 title: Agree 勾选按钮
-preview: https://didi.github.io/mand-mobile/examples/#/agree
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/agree',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/kTAOn8aY471628599596228.png'
+}
 ---
 
 用于标记切换某种状态，如协议勾选

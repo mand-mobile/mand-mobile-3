@@ -1,6 +1,9 @@
 ---
 title: ActionSheet 动作面板
-preview: https://didi.github.io/mand-mobile/examples/#/action-sheet
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/action-sheet',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/xkN1LyFP2l1628598394148.png'
+}
 ---
 
 用于提供场景相关的多个操作动作

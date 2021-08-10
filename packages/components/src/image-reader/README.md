@@ -1,6 +1,9 @@
 ---
 title: ImageReader 图片选择器
-preview: https://didi.github.io/mand-mobile/examples/#/image-reader
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/image-reader',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/8j6ZwhRJl61628592581271.png'
+}
 ---
 
 用于相册照片读取或拉起拍照

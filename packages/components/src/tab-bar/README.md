@@ -1,6 +1,9 @@
 ---
 title: TabBar 标签栏
-preview: https://didi.github.io/mand-mobile/examples/#/tab-bar
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/tab-bar',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/AgHmommyKZ1628598098389.png'
+}
 ---
 
 用于创建不含内容区域的标签栏

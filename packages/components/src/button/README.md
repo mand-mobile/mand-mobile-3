@@ -2,7 +2,10 @@
 component: button
 category: basic
 title: Button 按钮
-preview: https://didi.github.io/mand-mobile/examples/#/button
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/button',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/5HkBuEcNEz1628591757155.png'
+}
 ---
 
 按钮组件，可配置多种不同的按钮样式

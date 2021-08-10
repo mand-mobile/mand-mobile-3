@@ -1,6 +1,9 @@
 ---
 title: ScrollView 滚动区域/下拉刷新
-preview: https://didi.github.io/mand-mobile/examples/#/scroll-view
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/scroll-view',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/H3d20q1hj81628600039493.png'
+}
 ---
 
 用于模拟原生的滚动区域，并支持下拉刷新和加载更多

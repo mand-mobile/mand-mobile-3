@@ -1,6 +1,9 @@
 ---
 title: Toast 轻提示
-preview: https://didi.github.io/mand-mobile/examples/#/toast
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/toast',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/RYa7w8CUdb1628599027750.png'
+}
 ---
 
 弹出式消息提示
@@ -25,6 +28,7 @@ Vue.component(Toast.name, Toast) // 组件引入
 {{{ @/packages/components/src/toast/demo/cases/demo2.web.vue
 <!-- right wrapper -->
 }}} @/packages/components/src/toast/demo/cases/demo1.web.vue
+}}} @/packages/components/src/toast/demo/cases/demo3.web.vue
 </MDDemoWrapper>
 
 ## API

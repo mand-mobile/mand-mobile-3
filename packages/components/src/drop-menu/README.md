@@ -1,6 +1,9 @@
 ---
 title: DropMenu 下拉菜单
-preview: https://didi.github.io/mand-mobile/examples/#/drop-menu
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/drop-menu',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/le0f64iAls1628592331294.png'
+}
 ---
 
 下拉菜单可用于列表筛选
@@ -19,7 +22,7 @@ Vue.component(DropMenu.name, DropMenu)
 {{{ @/packages/components/src/drop-menu/demo/cases/demo0.vue
 }}} @/packages/components/src/drop-menu/demo/cases/demo1.vue
 {{{ @/packages/components/src/drop-menu/demo/cases/demo2.vue
-}}} @/packages/components/src/drop-menu/demo/cases/demo3.vue
+}}} @/packages/components/src/drop-menu/demo/cases/demo3.web.vue
 </MDDemoWrapper>
 
 ## API

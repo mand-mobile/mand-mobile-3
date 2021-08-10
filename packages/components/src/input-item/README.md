@@ -1,6 +1,9 @@
 ---
 title: InputItem 输入框
-preview: https://didi.github.io/mand-mobile/examples/#/input-item
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/input-item',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/jiCmyCVFNs1628599799749.png'
+}
 ---
 
 单行文本输入框，支持特殊场景文本格式化

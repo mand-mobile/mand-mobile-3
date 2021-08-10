@@ -1,6 +1,9 @@
 ---
 title: Radio 单选框
-preview: https://didi.github.io/mand-mobile/examples/#/radio
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/radio',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/Sgvtl4yXaw1628599866163.png'
+}
 ---
 
 可自定义或编辑单选框

@@ -1,6 +1,9 @@
 ---
 title: CodeBox 验证码输入框
-preview: https://didi.github.io/mand-mobile/examples/#/codebox
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/codebox',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/NQ4Bavy8Dt1628599325951.png'
+}
 ---
 
 验证码输入框

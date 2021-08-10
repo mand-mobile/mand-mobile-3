@@ -1,6 +1,9 @@
 ---
 title: Check 复选项
-preview: https://didi.github.io/mand-mobile/examples/#/check
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/check',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/EKzcx6Nyat1628599642769.png'
+}
 ---
 
 ## 引入

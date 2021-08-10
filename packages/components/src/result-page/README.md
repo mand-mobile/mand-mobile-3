@@ -1,6 +1,9 @@
 ---
 title: ResultPage 结果页
-preview: https://didi.github.io/mand-mobile/examples/#/result-page
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/result-page',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/fSDbSfss3S1628599426324.png'
+}
 ---
 
 用于展示流程结束页面的控件

@@ -1,6 +1,9 @@
 ---
 title: Field 区域列表组合
-preview: https://didi.github.io/mand-mobile/examples/#/field
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/field',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/jiVLhkLbgW1628599692796.png'
+}
 ---
 
 区域列表垂直排列，显示当前的内容、状态和可进行的操作。

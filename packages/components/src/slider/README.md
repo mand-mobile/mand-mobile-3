@@ -1,6 +1,9 @@
 ---
 title: Slider 滑块
-preview: https://didi.github.io/mand-mobile/examples/#/slider
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#/slider',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/xUvzMxLfsO1628599911678.png'
+}
 ---
 
 ## 引入

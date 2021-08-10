@@ -1,6 +1,9 @@
 ---
 title: Tag 标签
-preview: https://didi.github.io/mand-mobile/examples/#/tag
+preview: {
+  web: 'https://mand-mobile.github.io/mand-mobile-3/examples/#tag',
+  uni: 'https://pt-starimg.didistatic.com/static/starimg/img/sMR5t3injD1628598290138.png'
+}
 ---
 
 用于表示区域的状态的标签
