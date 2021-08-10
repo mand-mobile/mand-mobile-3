@@ -152,7 +152,7 @@ export default {
         const curColumnData = generator ? generator.apply(this, columnDataGeneratorParams) : ''
 
         // store column date
-        this.$set(columnData, i, curColumnData)
+        !columnIndex && this.$set(columnData, i, curColumnData)
 
         // set picker column data & refresh picker
         isSetColumn && picker.setColumnValues(i, curColumnData)
