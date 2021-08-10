@@ -86,16 +86,17 @@ export default {
     position relative
     .md-icon
       display flex
-      width auto 
+      width auto
       height auto
-      line-height 1
+      // line-height 1
       will-change auto
     .md-agree_icon--checked
       position absolute
       top 0
       left 0
-      transform scale(0.6)
-      color transparent
+      transform scale(0.3) 
+      opacity 0
+      // color transparent
       transition all .3s md-ease-in-out-quint
     .md-agree_icon--check
       color md-agree-fill
@@ -103,6 +104,7 @@ export default {
     .md-agree_icon--checked
       transform scale(1)
       color md-agree-fill
+      opacity 1
     .md-agree_icon--check
       opacity 0.8
 
