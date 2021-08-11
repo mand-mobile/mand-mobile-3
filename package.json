@@ -85,6 +85,7 @@
     "postcss-pxtorem": "^5.1.1",
     "typescript": "^3.9.7",
     "vue-clipboard2": "^0.3.1",
+    "vue-qriously": "^1.1.1",
     "vue-template-compiler": "v2.6.12",
     "vuepress": "^1.8.0"
   },
@@ -99,5 +100,8 @@
     "commitizen": {
       "path": "cz-mand-mobile-changelog"
     }
+  },
+  "engines": {
+    "node": ">=15"
   }
 }

@@ -11,14 +11,15 @@
       "run-p \"serve:uni -- --single --component-name {1}\" --",
     "build": "rm -fr bundle && run-p build:*",
     "build:uni":
-      "vue-cli-service md-preview --platform uni --export --output bundle/wechat",
+      "vue-cli-service md-preview --platform uni --output dist/dev/mp-weixin --mode production",
     "build:web":
       "vue-cli-service md-preview --platform web --export --output bundle/web",
     "clean:dist": "rm -fr dist",
     "clean:workspace": "rm -fr .mand-mobile",
     "serve:uni":
-      "vue-cli-service md-preview --platform uni --watch --output dist/dev/mp-weixin",
-    "serve:web": "vue-cli-service md-preview --platform web --watch",
+      "vue-cli-service md-preview --platform uni --watch --output dist/dev/mp-weixin --mode development",
+    "serve:web":
+      "vue-cli-service md-preview --platform web --watch --mode development",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "main": "lib/mand-mobile.js",
