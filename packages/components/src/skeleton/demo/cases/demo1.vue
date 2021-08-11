@@ -28,5 +28,7 @@ export const metaInfo = {
 <style>
 .md-example-child-skeleton-1 {
   margin: 30px 0;
+  padding: 30px;
+  background: #FFF;
 }
 </style>

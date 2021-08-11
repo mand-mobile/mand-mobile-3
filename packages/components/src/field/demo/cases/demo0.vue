@@ -2,7 +2,7 @@
   <div class="md-example-child md-example-child-field md-example-child-field-0">
     <md-field title="区域标题" brief="区域描述性文本，可根据具体场景配置">
       <div class="action-container" slot="action" @click="onClick">
-        操作 <md-icon name="rectangle"></md-icon>
+        操作 <md-icon name="arrow"></md-icon>
       </div>
       <p slot="footer">区域页脚区域内容插槽</p>
       <md-field-item solid title="标题区域" placeholder="提示文本" />

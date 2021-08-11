@@ -2,7 +2,7 @@
   <div class="md-example-child  md-example-child-button md-example-child-button-3">
     <md-button type="link" icon="message">评论</md-button>
     <md-button type="link" inactive>
-      去看看<md-icon name="arrow-right" size="md"></md-icon>
+      去看看<md-icon name="arrow" size="md"></md-icon>
     </md-button>
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
 }
 // #region ignore
 export const metaInfo = {
-  title: '文字链接按钮11',
+  title: '文字链接按钮',
   align: 'right',
 }
 // #endregion ignore

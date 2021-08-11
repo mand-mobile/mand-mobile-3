@@ -1,9 +1,9 @@
 <template>
   <div class="md-example-child md-example-child-drop-menu md-example-child-drop-menu-3">
     <md-drop-menu :data="data">
-      <template v-slot:default="{ option }">
+      <template #default="{ option }">
         <div class="md-drop-menu-custom-title">{{option.text}}</div>
-        <div class="md-drop-menu-custom-brief">{{ option.text }}【可使用slot-scope进行自定义描述】</div>
+        <div class="md-drop-menu-custom-brief">{{option.text}}【可使用slot-scope进行自定义描述】</div>
       </template>
     </md-drop-menu>
     <div class="content">正文区域</div>

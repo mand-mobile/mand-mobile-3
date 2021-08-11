@@ -4,7 +4,7 @@
       type="carousel"
       :size="15"
     ></md-activity-indicator>
-    <md-button type="primary" size="small" @click="createPay">
+    <md-button class="md-button" type="primary" size="small" @click="createPay">
       <md-activity-indicator
         v-if="loading"
         class="activity-indicator-css"
@@ -47,7 +47,6 @@ export default {
 // #region ignore
 export const metaInfo = {
   title: 'Carousel',
-  platform: 'web',
 }
 // #endregion ignore
 
@@ -62,6 +61,7 @@ export const metaInfo = {
 }
     
 .md-example-child-activity-indicator-2 .md-button {
+  width: 100%;
   margin-top: 30px;
 }
 

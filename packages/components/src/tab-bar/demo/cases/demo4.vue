@@ -8,7 +8,7 @@
       <template slot="item" slot-scope="{ item }">
         <div class="custom-item">
           <div class="icon">
-            <md-icon :name="item.icon"/>
+            <md-icon class="md-icon" :name="item.icon"/>
           </div>
           <div class="text">
             <p v-text="item.label"></p>
@@ -48,8 +48,8 @@ export const metaInfo = {
 
 </script>
 
-<style>
-.md-example-child-tab-bar-4 .custom-item {
+<style scoped>
+.custom-item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,7 +58,7 @@ export const metaInfo = {
   height: 100%;
 }
 
-.md-example-child-tab-bar-4 .custom-item .text {
+.custom-item .text {
   font-size: 20px;
 }
 </style>
