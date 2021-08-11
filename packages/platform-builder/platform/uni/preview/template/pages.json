@@ -2,10 +2,19 @@
   <% if (!target) { %>
   "pages": [
     { "path": "pages/category" }
-    <% category.forEach(item => { %>
-    <% item.list.forEach(component => { %>
-    ,{"path": "<%- item.category %>/pages/<%- component.dashedStyledName %>"}
-    <%}) %>
+  ],
+  "subpackages": [
+    <% category.forEach((item, i) => { %>
+    {
+      "root": "<%- item.category %>",
+      "pages": [
+        <% item.list.forEach((component, j) => { %>
+        {"path": "pages/<%- component.dashedStyledName %>"}
+        <% if (j !== item.list.length - 1) { %>,<%} %>
+        <%}) %>
+      ]
+    }
+    <% if (i !== category.length - 1) { %>,<%} %>
     <%}) %>
   ],
   <% }  else { %>
