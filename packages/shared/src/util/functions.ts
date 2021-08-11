@@ -43,8 +43,7 @@ export function throttle(fn = noop, interval = 300) {
 
 /**
  * Multiple Array traversal
- * @return 1 continue
- * @return 2 break
+ * @return traverse.CONTINUE | traverse.BREAK
  */
 export function traverse(data, childrenKeys = [], fn: any) {
   if (!data) {
@@ -66,9 +65,9 @@ export function traverse(data, childrenKeys = [], fn: any) {
         walk(isArray ? curData[i] : curData[i][key])
       } else if (level >= childrenKeys.length) {
         const res = fn(curData[i], level, [...indexs, i]) as unknown
-        if (res === 1) {
+        if (res === traverse.CONTINUE) {
           continue
-        } else if (res === 2) {
+        } else if (res === traverse.BREAK) {
           break
         }
       } else {
@@ -80,6 +79,8 @@ export function traverse(data, childrenKeys = [], fn: any) {
   }
   walk(data)
 }
+traverse.CONTINUE = 1
+traverse.BREAK = 2
 
 export function getNow() {
   return root.performance && root.performance.now && root.performance.timing

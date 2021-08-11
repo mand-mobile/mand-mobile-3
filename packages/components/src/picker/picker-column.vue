@@ -358,7 +358,7 @@ export default {
             (item.value === itemDefaultValue || item[this.labelKey] === itemDefaultValue))
         ) {
           fn(columnIndex, itemIndex)
-          return 2
+          return traverse.BREAK
         }
       })
     },
@@ -475,9 +475,9 @@ export default {
       traverse(API_LIST, api => {
         /* istanbul ignore if */
         if (!instance) {
-          return 2
+          return traverse.BREAK
         } else if (~blacklist.indexOf(api)) {
-          return 1
+          return traverse.CONTINUE
         }
 
         const fn = this[api]
