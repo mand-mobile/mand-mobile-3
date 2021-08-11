@@ -30,7 +30,6 @@
       @before-hide="$_onListBeforeHide"
     >
       <div class="md-drop-menu_list">
-
         <md-radio-list
           v-model="selectedMenuListValue[activeMenuBarIndex]"
           :options="activeMenuListData"
@@ -38,9 +37,9 @@
           align-center
           @change="$_onListItemClick"
         >
-          <div slot-scope="{ option }">
+          <template v-slot="{ option }">
             <slot :option="option"></slot>
-          </div>
+          </template>
         </md-radio-list>
       </div>
     </md-popup>
@@ -131,7 +130,7 @@ export default {
           (item.value === defaultValue || item.text === defaultValue || item.label === defaultValue)
         ) {
           this.$set(this.selectedMenuListItem, barItemIndex, item)
-          return 2
+          return traverse.BREAK
         }
       })
     },
@@ -206,7 +205,7 @@ export default {
   top 0
   left 0
   right 0
-  height md-drop-menu-height
+  height 100%
   box-sizing border-box
   color md-color-text-minor
   font-size md-drop-menu-font-size
@@ -215,7 +214,7 @@ export default {
   position relative
   z-index md-drop-menu-zindex
   display flex
-  height 100%
+  height md-drop-menu-height
   background md-drop-menu-bar-bg
   hairline(bottom, md-drop-menu-bar-border-color)
   &_item
