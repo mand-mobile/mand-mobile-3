@@ -3,7 +3,6 @@
     <% for (let demoIndex = 0; demoIndex < component.demoCases.length; demoIndex++) { %>
     <section class="md-example-section" >
       <div class="md-example-title" v-html="demoProps(<%- demoIndex %>, 'title', '基础')"></div>
-      <div class="md-example-describe" v-if="demoProps(<%- demoIndex %>, 'describe')" v-html="demoProps(<%- demoIndex %>, 'describe')"></div>
       <div class="md-example-content">
         <demo<%- demoIndex %>></demo<%- demoIndex %>>
       </div>
@@ -43,10 +42,7 @@ export default {
     },
     demoProps () {
       return (index, key, defaultVal = '') => {
-        let metaInfo = this.demos[index].metaInfo || {}
-        metaInfo = metaInfo[this.lang] || metaInfo
-        const value = metaInfo ? metaInfo[key] : ''
-        return value || defaultVal
+        return `demo-${index}`
       }
     }
   },
@@ -86,7 +82,7 @@ export default {
     .md-example-content
       block()
       position relative
-      margin-top 20px
+      margin-top 10px
       box-sizing border-box
       font-size 28px
 </style>

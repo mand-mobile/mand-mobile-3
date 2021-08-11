@@ -192,9 +192,9 @@ export function resolvePackageDir (pkgName, context) {
 
 // 解析绝对、相对路径，或者依赖包路径（需以~开头）
 export function resolvePackagePath (pkgPath, context) {
-  if (!checkPackagePath(pkgPath)) {
-    return pkgPath
-  }
+  // if (!checkPackagePath(pkgPath)) {
+  //   return pkgPath
+  // }
   const [pkgName, pkgBase] = parsePackagePath(pkgPath)
   const pkgPathDir = resolvePackageDir(pkgName, context)
   

@@ -9,7 +9,6 @@ const replace = require('rollup-plugin-replace')
 const {getBabelOutputPlugin} = require('@rollup/plugin-babel')
 // const stylus = require('rollup-plugin-stylus-compiler')
 
-const pkg = path.resolve(process.cwd(), './package.json')
 const {defineOptions} = require('../../../lib')
 const {resolvePackagePath} = require('../../../lib/utils')
 const stylusCompiler = require('../../../lib/rollup-plugins/rollup-plugin-stylus')
@@ -21,6 +20,7 @@ const resolver = nodeResolve({
 const resolve = dir => {
   return resolvePackagePath(dir, process.env.MAND_CONTEXT)
 }
+const pkg = resolve('./package.json')
 
 const stylusMixin = styl =>
   styl
