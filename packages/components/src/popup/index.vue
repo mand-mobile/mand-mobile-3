@@ -20,7 +20,7 @@
       class="md-popup-transition md-popup-transition_box"
       :show="isPopupBoxShow"
       :name="transitionName"
-      :styles="{height: (position === 'left' || position === 'right') ? '100%' : 'auto'}"
+      :styles="{height: '100%'}"
       @before-enter="$_onPopupTransitionStart"
       @before-leave="$_onPopupTransitionStart"
       @after-enter="$_onPopupTransitionEnd"
@@ -254,6 +254,8 @@ export default {
 
 .md-popup-transition_box
   position relative
+  max-width 100%
+  max-height 100%
   z-index 2
 
 .md-popup_mask
