@@ -36,6 +36,7 @@
         @initialed="$_onPickerInitialed"
         @change="$_onPickerChange"
       ></md-picker-view>
+      <div class="md-picker-footer"></div>
     </md-popup>
   </div>
 </template>
@@ -246,4 +247,8 @@ export default {
   width 100%
   .md-popup
     z-index md-picker-zindex
+.md-picker-footer
+  padding-bottom constant(safe-area-inset-bottom)
+  padding-bottom env(safe-area-inset-bottom)
+  background md-color-bg-inverse
 </style>
