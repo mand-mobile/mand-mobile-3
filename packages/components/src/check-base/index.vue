@@ -77,4 +77,6 @@ export default {
     top 0
     right 0
     font-size 0
+    .md-icon
+      transform scale(.6)
 </style>
