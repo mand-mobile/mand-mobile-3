@@ -125,11 +125,12 @@ module.exports = {
     '!**/packages/examples/**',
     '!**/packages/mand-mobile/**',
     '!**/node_modules/**',
-    '!**/__temp__/**',
+    '!**/.temp/**',
     '!**/.mand-mobile/**',
     '!**/lib/**',
     '!**/lib-vw/**',
-    '!**/dist/**'
+    '!**/dist/**',
+    '!**/*.en-US.md'
   ],
   markdown: {
     extendMarkdown: md => {
@@ -142,10 +143,10 @@ module.exports = {
       lang: 'zh-CN',
       description: 'Vue 驱动的静态网站生成器'
     },
-    '/en-US/': {
-      lang: 'en-US',
-      description: 'Vue-powered Static Site Generator'
-    },
+    // '/en-US/': {
+    //   lang: 'en-US',
+    //   description: 'Vue-powered Static Site Generator'
+    // },
   },   
   plugins: [
     require('./plugins/dynamic-locals/index.js'),

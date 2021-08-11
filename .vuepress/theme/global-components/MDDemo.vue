@@ -268,8 +268,8 @@ export default {
         padding 1em
         // font-size .9em
         line-height 1.5
-        code
-          font-size .8em
+        // code
+        //   font-size .8em
 
 .ant-tooltip-inner .anticon
   color $accentColor

@@ -6,7 +6,10 @@
     <div class="md-doc-layout_content">
       <div class="md-doc-layout_content_header" v-if="title">
         <p class="md-doc-layout_content_header_title" v-text="title"></p>
-        <MDPlatformTag class="md-doc-layout_content_header_tag large" v-bind="{ platforms }"/>
+        <section class="md-doc-layout_content_header_operator">
+          <Qrcode v-if="qrcode" :qrcode="qrcode" />
+          <MDPlatformTag class="md-doc-layout_content_header_tag large" v-bind="{ platforms }"/>
+        </section>
       </div>
       <div class="md-doc-layout_content_main">
         <Content />
@@ -28,6 +31,7 @@ import PageToc from '../components/Toc'
 import PageNav from '../components/PageNav'
 import Contributors from '../components/Contributors'
 // import PlatformTag from '../components/PlatformTag'
+import Qrcode from '../components/Qrcode'
 import { resolveSidebarItems } from '../util'
 
 export default {
@@ -35,7 +39,8 @@ export default {
     Sidebar,
     PageToc,
     PageNav,
-    Contributors
+    Contributors,
+    Qrcode
     // PlatformTag
   },
   // watch:{
@@ -72,6 +77,9 @@ export default {
     platforms () {
       const platform = this.$page.meta.platform || (this.$page.meta.category ? ['web', 'uni'] : '')
       return Array.isArray(platform) ? platform : [platform]
+    },
+    qrcode () {
+      return this.$page.frontmatter.preview
     }
   }
 }
@@ -98,9 +106,13 @@ export default {
         font-size 2.2rem
         font-weight 500
         color #1f2f3d
-      &_tag
+      &_operator
+        display flex
         margin-left auto
         align-items center
+      // &_tag
+      //   margin-left auto
+      //   align-items center
     &_main
       min-height calc(100vh - 16em)
       padding-bottom 5em

@@ -37,7 +37,6 @@ export default {
 .md-doc-sidebar_item
   list-style none
   border-radius 2.6em
-  font-family DINAlternate, AvenirNext-Medium, Microsoft Yahei, Lato, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Verdana, Tahoma, sans-serif
   &_link
     display block
     transition all .3s
@@ -51,7 +50,8 @@ export default {
   &_category
     font-weight bold
     font-size 1.2em
-    font-family DINAlternate-Bold, AvenirNext-Medium, Microsoft Yahei, Lato, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Verdana, Tahoma, sans-serif
+    font-family Quicksand, AvenirNext-Medium, Microsoft Yahei, Lato, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Verdana, Tahoma, sans-serif
+    font-weight 700
   &.grouped
     >.md-doc-sidebar_item_link
       color $accentColor
