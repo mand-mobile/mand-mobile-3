@@ -1,7 +1,7 @@
 <template>
   <div class="md-cg">
-    <h1 class="md-cg-title">Mand Mobile 3</h1>
-    <h1 class="md-cg-subtitle">面向金融场景的移动端Vue组件库</h1>
+    <h1 class="md-cg-title">Mand Mobile@3</h1>
+    <h1 class="md-cg-subtitle">基于Vue DSL兼容多平台，面向金融场景的组件库（微信小程序版）</h1>
     <!-- <div class="md-cg-logo">
       <img src="//img6.didistatic.com/static/manhattan/mand/docs/mand-logo-black.svg" alt="">
     </div> -->
@@ -74,7 +74,7 @@ block()
   float left
   width 100%
 .md-cg
-  padding 20px 20px 50px
+  padding 20px 32px 50px
   clearfix()
   .md-cg-title
     block()
@@ -89,7 +89,7 @@ block()
   .md-cg-subtitle
     block()
     margin-bottom 30px
-    font-size md-font-body-normal
+    font-size 18px
     font-weight 300
     color md-color-text-minor
     text-align center
@@ -111,7 +111,7 @@ block()
     margin-bottom 20px
     border-radius 12px
     transform translate(0, 0)
-    overflow hidden
+    // overflow hidden
     &.active
       height auto
     // box-shadow shadow-bottom
@@ -131,7 +131,7 @@ block()
       box-sizing border-box
       box-shadow 0 2px 4px rgba(0, 0, 0, .08)
       background md-color-bg-base
-      overflow hidden
+      // overflow hidden
       span
         font-size md-font-body-large
         color md-color-text-minor
@@ -146,11 +146,11 @@ block()
       &:before
         content ""
         position absolute
-        left 0
-        top 0
-        width 10px
-        height 100%
-        border-radius md-border-width-base
+        left -4px
+        top 15%
+        width 12px
+        height 70%
+        border-radius 12px
         // display none
     &:nth-of-type(1) .cg-category-title:before
       background #5E83DD
