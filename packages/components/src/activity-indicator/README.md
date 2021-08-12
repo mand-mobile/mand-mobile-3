@@ -21,7 +21,7 @@ Vue.component(ActivityIndicator.name, ActivityIndicator)
 <MDDemoWrapper>
 <!-- left wrapper -->
 {{{ @/packages/components/src/activity-indicator/demo/cases/demo0.vue
-{{{ @/packages/components/src/activity-indicator/demo/cases/demo2.web.vue
+{{{ @/packages/components/src/activity-indicator/demo/cases/demo2.vue
 <!-- right wrapper -->
 }}} @/packages/components/src/activity-indicator/demo/cases/demo1.web.vue
 </MDDemoWrapper>
