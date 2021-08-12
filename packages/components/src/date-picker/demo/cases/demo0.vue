@@ -7,6 +7,7 @@
       :max-date="maxDate"
       :default-date="currentDate"
       keep-index
+      is-vibrate
       @initialed="onDatePickerInitialed"
     ></md-date-picker-view>
   </div>
