@@ -48,10 +48,21 @@ export default {
       margin-left .3em
       color #aaa
   &_category
+    position relative
+    margin-top 1em
     font-weight bold
     font-size 1.2em
-    font-family Quicksand, AvenirNext-Medium, Microsoft Yahei, Lato, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Verdana, Tahoma, sans-serif
+    // font-family Quicksand, AvenirNext-Medium, Microsoft Yahei, Lato, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Verdana, Tahoma, sans-serif
     font-weight 700
+    &::before
+      content ''
+      position absolute
+      top 0
+      left 16px
+      width 10%
+      height 4px
+      border-radius 4px
+      background-color #ddd
   &.grouped
     >.md-doc-sidebar_item_link
       color $accentColor

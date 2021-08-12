@@ -193,7 +193,18 @@ blockquote
   font-size .9em
 
 .custom-block
-  border-radius 4px
+  position relative
+  padding 1rem 1.5rem !important
+  border-radius 8px
+  border none !important
+  &::before
+    content ''
+    position absolute
+    top 5px
+    left 5px
+    width 10px
+    height 10px
+    border-radius 10px
   p, li
     margin-top 8px
     font-size .9em
@@ -202,8 +213,15 @@ blockquote
       margin-bottom 10px
       color #111A34
   &.tip
-    border-color $accentColor
     background-color #F9FAFB
+    &::before
+      background-color $accentColor
+  &.warning
+    &::before
+      background-color #b29400
+  &.danger
+    &::before
+      background-color #900
 
 :not(pre) >code
   margin 0 3px

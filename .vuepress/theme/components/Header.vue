@@ -2,7 +2,10 @@
   <div class="md-doc-header">
     <a :href="$site.base" class="md-doc-header_aside">
       <img class="md-doc-header_aside_logo" :src="$site.themeConfig.logo" alt="logo">
-      <p class="md-doc-header_aside_title" v-text="$site.title"></p>
+      <div class="">
+        <p class="md-doc-header_aside_title" v-text="$site.title"></p>
+        <p class="md-doc-header_aside_desc">一直有被salute，但是从未被超越</p>
+      </div>
     </a>
     <SearchBox class="md-doc-header_search"/>
     <NavBar v-bind="{ navItems }" />
@@ -88,7 +91,7 @@ export default {
       display inline-block
       margin-right .8em
       width auto
-      height 2.4em
+      height 2.8em
       border solid 1px #FFF
       border-radius 50%
       box-sizing border-box
@@ -100,8 +103,17 @@ export default {
       height 100%
       margin 0
       color #333
-      font-size 1.4em
-      font-family DINAlternate-Bold,AvenirNext-Medium,Microsoft Yahei,Lato,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Verdana,Tahoma,sans-serif
+      font-size 1.6em
+      font-weight 700
+      font-family Quicksand,DINAlternate-Bold,AvenirNext-Medium,Microsoft Yahei,Lato,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Verdana,Tahoma,sans-serif
+      line-height 1
+    &_desc
+      font-size 10px
+      letter-spacing 1.5px
+      color #999
+      line-height 1
+      margin 2px 0 0
+      zoom 0.8
   /deep/.search-box
     display flex
     align-items center
