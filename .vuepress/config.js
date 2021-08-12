@@ -38,7 +38,7 @@ module.exports = {
   ],
   themeConfig: {
     version: packageInfo.version,
-    logo: 'https://pt-starimg.didistatic.com/static/starimg/img/ySOsAunfGm1610683661213.png',
+    logo: 'http://static.galileo.xiaojukeji.com/static/tms/other/mand-mobile-logo.png',
     repo: 'https://github.com/mand-mobile/mand-mobile-3',
     demoConfig: {
       shadowMode: false
