@@ -34,6 +34,7 @@
         @initialed="$_onPickerInitialed"
         @change="$_onPickerChange"
       ></md-date-picker-view>
+      <div class="md-date-picker-footer"></div>
     </md-popup>
   </div>
 </template>
@@ -165,3 +166,10 @@ export default {
 }
 
 </script>
+
+<style lang="stylus">
+.md-date-picker-footer
+  padding-bottom constant(safe-area-inset-bottom)
+  padding-bottom env(safe-area-inset-bottom)
+  background md-color-bg-inverse
+</style>

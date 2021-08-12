@@ -10,6 +10,7 @@
       :line-height="lineHeight"
       :keep-index="keepIndex"
       :is-immediate-init="isImmediateInit"
+      :is-vibrate="isVibrate"
       @initialed="$emit('initialed')"
       @change="$_onPickerChange"
     ></md-picker-view>
