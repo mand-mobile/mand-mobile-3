@@ -27,6 +27,12 @@ platform
   └── ...                   # 其它
 ```
 
+原理图示：
+
+<p align="center">
+<img src="https://pt-starimg.didistatic.com/static/starimg/img/GlyrjQTbPe1628762543661.png" width="1000"/>
+</p>
+
 ## 核心API
 
 ### Builder
@@ -124,10 +130,11 @@ module.exports = function (api, options) {
 
 特定构建平台和构建动作目录中的`builder.config.js`用于设置Builder的构建行为和Vue CLI的配置
 
-* tempDir: 中间态构建目录，默认为`__temp__`
+* tempDir: 中间态构建目录，默认为`.temp`
 * outputDir: 构建产出静态文件目录，默认为`dist`
 * componentPath: component源码所在目录 支持绝对路径、相对路径和依赖包(以~开头)，默认为`~@mand-mobile/components/src`
 * mainEntry: 构建入口文件，默认为`main.js`
 * vueOptions: [Vue CLI 配置](https://cli.vuejs.org/zh/config/#%E5%85%A8%E5%B1%80-cli-%E9%85%8D%E7%BD%AE)
+* rollupOptions: [rollup 配置](https://www.rollupjs.com/guide/zh#-configuration-files-)
 
 
