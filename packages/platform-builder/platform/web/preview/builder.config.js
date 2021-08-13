@@ -36,6 +36,7 @@ function resolve(dir) {
 module.exports = defineOptions({
   componentPath: '~@mand-mobile/components/src',
   vueOptions: {
+    publicPath: '/mand-mobile-examples',
     devServer: {
       progress: false,
     },

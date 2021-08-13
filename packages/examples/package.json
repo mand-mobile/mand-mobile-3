@@ -13,7 +13,7 @@
     "build:uni":
       "vue-cli-service md-preview --platform uni --output dist/dev/mp-weixin --mode production",
     "build:web":
-      "vue-cli-service md-preview --platform web --export --output bundle/web",
+      "vue-cli-service md-preview --platform web --export --output dist/web --mode production",
     "clean:dist": "rm -fr dist",
     "clean:workspace": "rm -fr .mand-mobile",
     "serve:uni":
