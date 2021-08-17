@@ -83,6 +83,7 @@
     "miniprogram-api-typings": "^2.8.0-2",
     "postcss-load-config": "^2.1.0",
     "postcss-pxtorem": "^5.1.1",
+    "three": "^0.131.3",
     "typescript": "^3.9.7",
     "vue-clipboard2": "^0.3.1",
     "vue-qriously": "^1.1.1",
