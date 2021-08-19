@@ -2,7 +2,7 @@
   <div class="md-example md-example-<%- component.dashedStyledName %>">
     <% for (let demoIndex = 0; demoIndex < component.demoCases.length; demoIndex++) { %>
     <section class="md-example-section" >
-      <div class="md-example-title" v-html="demoProps(<%- demoIndex %>, 'title', '基础')"></div>
+      <div class="md-example-title" v-text="demoProps(<%- demoIndex %>, 'title', '基础')"></div>
       <div class="md-example-content">
         <demo<%- demoIndex %>></demo<%- demoIndex %>>
       </div>
