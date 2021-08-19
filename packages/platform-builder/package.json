@@ -22,18 +22,13 @@
     "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
   },
   "license": "Apache",
-  "peerDependencies": {
-    "@mand-mobile/components": "^3.1.0-alpha.2",
-    "@mand-mobile/platform-runtime": "^3.1.0-alpha.2",
-    "@mand-mobile/scroller": "^3.1.0-alpha.2",
-    "@mand-mobile/shared": "^3.1.0-alpha.2"
-  },
   "dependencies": {
     "@dcloudio/uni-cli-shared": "^2.0.0-29820201110001",
     "@dcloudio/uni-h5": "^2.0.0-29820201110001",
     "@dcloudio/uni-helper-json": "*",
     "@dcloudio/uni-migration": "^2.0.0-29820201110001",
     "@dcloudio/uni-mp-weixin": "^2.0.0-29820201110001",
+    "@dcloudio/uni-mp-alipay": "^2.0.0-29820201110001",
     "@dcloudio/uni-stat": "^2.0.0-29820201110001",
     "@dcloudio/uni-template-compiler": "^2.0.0-29820201110001",
     "@dcloudio/vue-cli-plugin-hbuilderx": "^2.0.0-27920200527001",
@@ -41,7 +36,10 @@
     "@dcloudio/vue-cli-plugin-uni-optimize": "^2.0.0-29820201110001",
     "@dcloudio/webpack-uni-mp-loader": "^2.0.0-29820201110001",
     "@dcloudio/webpack-uni-pages-loader": "^2.0.0-29820201110001",
-    "@mand-mobile/vue-cli-plugin-builder": "^3.1.0-alpha.0",
+    "@mand-mobile/components": "^3.1.0-alpha.0",
+    "@mand-mobile/platform-runtime": "^3.1.0-alpha.0",
+    "@mand-mobile/scroller": "^3.1.0-alpha.0",
+    "@mand-mobile/shared": "^3.1.0-alpha.0",
     "@rollup/plugin-alias": "^3.1.1",
     "@rollup/plugin-babel": "^5.0.4",
     "@rollup/plugin-node-resolve": "^8.4.0",
@@ -101,10 +99,6 @@
     "zp-vueify": "^9.4.2"
   },
   "devDependencies": {
-    "@mand-mobile/components": "^3.1.0-alpha.2",
-    "@mand-mobile/platform-runtime": "^3.1.0-alpha.2",
-    "@mand-mobile/scroller": "^3.1.0-alpha.2",
-    "@mand-mobile/shared": "^3.1.0-alpha.2",
     "chokidar-cli": "^2.1.0",
     "copyfiles": "^2.3.0",
     "esbuild": "^0.12.17",
