@@ -9,15 +9,21 @@
       "run-p \"serve:web -- --single --component-name {1}\" --",
     "serve-single:uni":
       "run-p \"serve:uni -- --single --component-name {1}\" --",
+    "serve-single:uni:alipay":
+      "run-p \"serve:uni:alipay -- --single --component-name {1}\" --",
     "build": "rm -fr bundle && run-p build:*",
     "build:uni":
       "vue-cli-service md-preview --platform uni --output dist/dev/mp-weixin --mode production",
+    "build:uni:alipay":
+      "vue-cli-service md-preview --platform uni --subplatform mp-alipay --output dist/dev/mp-alipay --mode production",
     "build:web":
       "vue-cli-service md-preview --platform web --export --output dist/web --mode production",
     "clean:dist": "rm -fr dist",
     "clean:workspace": "rm -fr .mand-mobile",
     "serve:uni":
       "vue-cli-service md-preview --platform uni --watch --output dist/dev/mp-weixin --mode development",
+    "serve:uni:alipay":
+      "vue-cli-service md-preview --platform uni --watch --subplatform mp-alipay --output dist/dev/mp-alipay --mode development",
     "serve:web":
       "vue-cli-service md-preview --platform web --watch --mode development",
     "test": "echo \"Error: run tests from root\" && exit 1"
@@ -25,6 +31,7 @@
   "main": "lib/mand-mobile.js",
   "files": ["lib"],
   "dependencies": {
+    "@dcloudio/uni-mp-alipay": "^2.0.0-31920210709003",
     "@mand-mobile/components": "^3.1.0-alpha.0",
     "@mand-mobile/platform-runtime": "^3.1.0-alpha.0",
     "@mand-mobile/scroller": "^3.1.0-alpha.0",
