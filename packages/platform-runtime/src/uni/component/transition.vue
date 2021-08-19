@@ -2,7 +2,7 @@
   <div
     v-if="isShow"
     class="md-transition-primitive"
-    :class="transitionClass"
+    :class="transitionClassFlat"
     :style="inlineStyles"
     @animationend="$_onTransitionendEnd"
     @transitionend="$_onTransitionendEnd"
@@ -42,6 +42,9 @@ export default {
   computed: {
     inlineStyles() {
       return flatStyleObject(this.styles)
+    },
+    transitionClassFlat() {
+      return this.transitionClass.join(' ')
     },
   },
   watch: {
