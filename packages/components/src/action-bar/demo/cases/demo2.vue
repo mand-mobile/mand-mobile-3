@@ -6,7 +6,6 @@
 
 <script>
 import ActionBar from 'mand-mobile/lib/action-bar'
-import Toast from 'mand-mobile/lib/toast'
 
 export default {
   components: {
@@ -25,11 +24,6 @@ export default {
         },
       ],
     }
-  },
-  methods: {
-    handleClick() {
-      Toast.succeed('Click')
-    },
   },
 }
 // #region ignore

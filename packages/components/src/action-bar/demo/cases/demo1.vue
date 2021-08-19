@@ -17,18 +17,18 @@ export default {
       data: [
         {
           text: '次要按钮',
-          onClick: this.handleClick,
+          onClick: 'handleClick',
         },
         {
           text: '主要按钮',
-          onClick: this.handleClick,
+          onClick: 'handleClick',
         },
       ],
     }
   },
   methods: {
-    handleClick() {
-      Toast.succeed('Click')
+    handleClick(event, action) {
+      Toast.succeed(`Click ${action.text}`)
     },
   },
 }
