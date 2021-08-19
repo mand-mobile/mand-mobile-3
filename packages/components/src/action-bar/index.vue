@@ -56,8 +56,15 @@ export default {
   methods: {
     // MARK: events handler
     $_onBtnClick(event, action, index) {
-      if (action.onClick) {
-        action.onClick(event, action, index)
+      const parentRef = this.$parent
+      let onClick = action.onClick
+
+      if (typeof onClick === 'string') {
+        onClick = parentRef[onClick]
+      }
+
+      if (onClick) {
+        onClick.call(parentRef, event, action, index)
       }
       this.$emit('click', event, action, index)
     },
@@ -98,12 +105,12 @@ export default {
   flex 1
   height 100%
 
-.md-action-bar_button
-  display flex
-  float right
-  align-items center
-  justify-content center
-  flex 1
-  &:nth-of-type(2)
-    margin-left md-action-bar-button-gap
+  .md-action-bar_button, .md-button
+    display flex
+    float right
+    align-items center
+    justify-content center
+    flex 1
+    &:nth-of-type(2)
+      margin-left md-action-bar-button-gap
 </style>

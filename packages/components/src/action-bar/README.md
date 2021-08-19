@@ -46,7 +46,7 @@ Vue.component(ActionBar.name, ActionBar)
 |----|-----|------|------|------|
 |text|文案|String| | |
 |disabled|禁用|Boolean|`false`| |
-|onClick|点击回调|Function(action: [ActionOptions](#actionoptions))| | |
+|onClick|点击回调或回调方法名|Function(action: [ActionOptions](#actionoptions))\/String| |Uniapp仅支持String|
 |type|类型|String|`disabled`/`primary`|`disabled`为`true`时为`disabled`，否则为`primary`|
 |plain|朴素|Boolean| |最后一个按钮为`false`，其它为`true`|
 |round|圆角|Boolean|`false`| |
