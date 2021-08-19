@@ -12,6 +12,7 @@
     <md-transition
       class="md-popup-transition md-popup-transition_mask"
       :show="hasMask && isPopupBoxShow"
+      :styles="stylesMask"
       name="md-fade"
     >
       <div class="md-popup_mask" @click="$_onPopupMaskClick"></div>
@@ -20,7 +21,10 @@
       class="md-popup-transition md-popup-transition_box"
       :show="isPopupBoxShow"
       :name="transitionName"
-      :styles="{height: '100%'}"
+      :styles="{
+        height: (position === 'left' || position === 'right') ? '100%' : 'auto',
+        ...stylesBox
+      }"
       @before-enter="$_onPopupTransitionStart"
       @before-leave="$_onPopupTransitionStart"
       @after-enter="$_onPopupTransitionEnd"
@@ -63,6 +67,12 @@ export default {
     isInner: {
       type: Boolean,
       default: false,
+    },
+    stylesMask: {
+      type: Object,
+    },
+    stylesBox: {
+      type: Object,
     },
     // Mixin Props
     // value: {

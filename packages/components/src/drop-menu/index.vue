@@ -25,6 +25,7 @@
       prevent-scroll
       alignCenter
       :prevent-scroll-exclude="scroller"
+      :styles-box="{height: '100%'}"
       @show="$_onListShow"
       @hide="$_onListHide"
       @before-hide="$_onListBeforeHide"
@@ -87,7 +88,7 @@ export default {
 
   computed: {
     hasSlot() {
-      return !!this.$scopedSlots.default
+      return !!(this.$scopedSlots && this.$scopedSlots.default)
     },
     activeMenuListData() {
       if (this.activeMenuBarIndex < 0 || !this.data[this.activeMenuBarIndex]) {

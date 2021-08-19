@@ -37,7 +37,7 @@
         <md-icon
           class="md-icon"
           name="close"
-          @click.native="hidePopUp('top')"
+          @click="hidePopUp('top')"
         ></md-icon>
       </div>
     </md-popup>

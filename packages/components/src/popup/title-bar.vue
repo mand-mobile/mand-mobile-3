@@ -12,7 +12,7 @@
       <div
         class="md-popup-title-bar_left md-popup-cancel"
         v-if="cancelText"
-        v-html="cancelText"
+        v-text="cancelText"
         @click="$emit('cancel')"
       ></div>
       <div
@@ -32,12 +32,12 @@
       <p
         v-if="title"
         class="md-popup-title-bar_title_main"
-        v-html="title"
+        v-text="title"
       ></p>
       <p
         v-if="describe"
         class="md-popup-title-bar_title_describe"
-        v-html="describe"
+        v-text="describe"
       ></p>
     </div>
     <div
@@ -52,7 +52,7 @@
       <div
         class="md-popup-title-bar_right md-popup-confirm"
         v-if="okText"
-        v-html="okText"
+        v-text="okText"
         @click="$emit('confirm')"
       ></div>
       <div
