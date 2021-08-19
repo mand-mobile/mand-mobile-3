@@ -18,6 +18,8 @@
 import Tooltip from 'ant-design-vue/lib/tooltip'
 import 'ant-design-vue/lib/tooltip/style/index.css'
 
+let CACHE_MAP = {}
+
 export default {
   components: {
     [Tooltip.name]: Tooltip,
@@ -56,13 +58,19 @@ export default {
       owner,
     }) {
       const url = `https://proapi.azurewebsites.net/doc/getAvatarList?filename=${fileName}&owner=${owner}&repo=${repo}`
+
+      if (CACHE_MAP[url]) {
+        return CACHE_MAP[url]
+      }
+
       const data = await fetch(url, { mode: 'cors' })
         .then(res => res.json())
         .catch(e => console.log(e))
       if (!data) {
         return []
       }
-      return data
+
+      return CACHE_MAP[url] = data
     },
     getAvatarLink(link) {
       if (!link) {
@@ -93,6 +101,7 @@ export default {
       margin-bottom .5em
       margin-right .5em
       border-radius 50%
+      border solid 1px #ddd
       overflow hidden
       list-style none
       a, img

@@ -14,7 +14,7 @@
       <div class="md-doc-layout_content_main">
         <Content />
       </div>
-      <Contributors :fileName="$page.relativePath" :owner="repo[1]" :repo="repo[2]"/>
+      <Contributors :fileName="$page.relativePath" :owner="repo[1]" :repo="repo[2]" :key="tmp"/>
       <PageNav v-bind="{ sidebarItems }" />
       <PageToc
         v-if="hasToc"
@@ -43,11 +43,17 @@ export default {
     Qrcode
     // PlatformTag
   },
-  // watch:{
-  //   $route(to,from){
-  //     console.log(to.path);
-  //   }
-  // },
+  data () {
+    return {
+      tmp: Date.now()
+    }
+  },
+  watch:{
+    $route(to,from){
+      this.tmp = Date.now()
+      console.log(to.path);
+    }
+  },
   computed: {
     hasToc () {
       return this.$page.frontmatter.toc !== 'hidden'
