@@ -4,6 +4,8 @@ name: platform-builder
 permalink: /packages/modules/platform-builder
 ---
 
+![](https://img.shields.io/npm/v/@mand-mobile/platform-builder?label=%40mand-mobile/platform-builder)
+
 ## 介绍
 
 Platform Builder 是一个抽象的构建容器，可快速拓展面向多个平台（Vue2.0, Vue3.0, Uniapp, Hummerjs等）的构建能力，可结合[Platform Runtime](/mand-mobile/packages/modules/platform-builder/)将一套基于Vue DSL的组件模板面向特定的运行平台构建产出，并可基于约定的插件、模板、配置增强构建能力。

@@ -4,6 +4,8 @@ name: scroller
 permalink: /packages/modules/scroller
 ---
 
+![](https://img.shields.io/npm/v/@mand-mobile/scroller?label=%40mand-mobile%2Fscroller)
+
 Platform-independent virtual scrolling computing engine
 
 - [Scroller](#scroller)

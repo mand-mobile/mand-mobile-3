@@ -4,6 +4,8 @@ name: shared
 permalink: /packages/modules/shared
 ---
 
+![](https://img.shields.io/npm/v/@mand-mobile/shared?label=%40mand-mobile/shared)
+
 Internal utility functions, stylus, and constants shared across `@mand-mobile` packages.
 
 ## Usage

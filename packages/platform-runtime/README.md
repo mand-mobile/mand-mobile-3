@@ -4,6 +4,8 @@ name: platform-runtime
 permalink: /packages/modules/platform-runtime
 ---
 
+![](https://img.shields.io/npm/v/@mand-mobile/platform-runtime?label=%40mand-mobile/platform-runtime)
+
 Runtime shims and compiletime plugins for smoothing out differences between platforms.
 
 - [Component](#component)
