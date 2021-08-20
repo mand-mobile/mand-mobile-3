@@ -1,10 +1,9 @@
 <template>
   <div class="md-action-sheet">
     <md-popup
-      class="inner-popup large-radius"
       v-model="isActionSheetShow"
       position="bottom"
-      prevent-scroll
+      is-inner
       @show="$_onShow"
       @hide="$_onHide"
     >
@@ -22,7 +21,7 @@
               @click="$_onSelect(item, index)"
             >
               <div class="md-action-sheet_item_wrapper">
-                <div class="md-action-sheet_item_section" v-html="item.text || item.label"></div>
+                <div class="md-action-sheet_item_section" v-text="item.text || item.label"></div>
               </div>
             </li>
           </template>
