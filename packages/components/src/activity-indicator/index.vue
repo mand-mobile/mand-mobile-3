@@ -29,8 +29,9 @@
           />
         </template>
       </div>
+      <!-- $default in mp-alipay -->
       <div
-        v-if="$slots.default"
+        v-if="$slots.default || $slots.$default"
         class="md-activity-indicator_text"
         :style="{fontSize: `${textSize}px`, color: textColor}"
       >
@@ -41,9 +42,9 @@
 </template>
 
 <script>
-import Roller from '../activity-indicator/roller'
-import Spinner from '../activity-indicator/spinner'
-import Carousel from '../activity-indicator/carousel'
+import Roller from './roller'
+import Spinner from './spinner'
+import Carousel from './carousel'
 
 export default {
   name: 'md-activity-indicator',

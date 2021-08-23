@@ -7,7 +7,7 @@
         :style="styles"
       />
     </div>
-    <div class="md-activity-indicator-rolling_content" v-if="$slots.default">
+    <div class="md-activity-indicator-rolling_content" v-if="$slots.default || $slots.$default">
       <slot></slot>
     </div>
   </div>
