@@ -1,12 +1,12 @@
 <template>
   <div class="md-example-child md-example-child-activity-indicator md-example-child-activity-indicator-0">
     <md-activity-indicator
-      class="activity-indicator"
+      class="md-activity-indicator"
       :size="20"
       :text-size="16"
     >加载中...</md-activity-indicator>
     <md-activity-indicator
-      class="activity-indicator"
+      class="md-activity-indicator"
       :size="20"
       :text-size="16"
       vertical
@@ -30,14 +30,14 @@ export const metaInfo = {
 
 </script>
 
-<style scoped>
+<style>
 .md-example-child-activity-indicator-0 {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
   
-.activity-indicator {
+.md-example-child-activity-indicator-0 .md-activity-indicator {
   margin-bottom: 30px;
 }
 

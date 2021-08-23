@@ -7,7 +7,6 @@
     <md-button class="md-button" type="primary" size="small" @click="createPay">
       <md-activity-indicator
         v-if="loading"
-        class="activity-indicator-css"
         type="carousel"
         :size="8"
         color="#fff"
@@ -52,7 +51,7 @@ export const metaInfo = {
 
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 .md-example-child-activity-indicator-2 {
   display: flex;
   flex-direction: column;
