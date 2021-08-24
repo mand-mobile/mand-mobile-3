@@ -90,7 +90,7 @@ export default {
       height auto
       // line-height 1
       will-change auto
-    .md-agree_icon--checked
+    .md-agree_icon--checked, /deep/.md-icon-checked
       position absolute
       top 0
       left 0
@@ -98,14 +98,14 @@ export default {
       opacity 0
       // color transparent
       transition all .3s md-ease-in-out-quint
-    .md-agree_icon--check
+    .md-agree_icon--check, /deep/.md-icon-check
       color md-agree-fill
   &--checked .md-agree_icon_container
-    .md-agree_icon--checked
+    .md-agree_icon--checked, /deep/.md-icon-checked
       transform scale(1)
       color md-agree-fill
       opacity 1
-    .md-agree_icon--check
+    .md-agree_icon--check, /deep/.md-icon-check
       opacity 0.8
 
 .md-agree_content

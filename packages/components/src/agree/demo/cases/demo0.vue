@@ -49,3 +49,10 @@ export const metaInfo = {
 // #endregion ignore
 
 </script>
+
+<style scoped>
+.md-example-child-0 a {
+  /* mp-alipay */
+  display: inline;
+}
+</style>
