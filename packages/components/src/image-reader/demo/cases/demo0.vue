@@ -131,7 +131,8 @@ export const metaInfo = {
   margin-right: 0;
 }
 
-.md-example-child-reader .image-reader-item .image-reader-item-del {
+.md-example-child-reader .image-reader-item .image-reader-item-del,
+.md-example-child-reader .image-reader-item /deep/.md-tag {
   position: absolute;
   top: 0;
   right: 0;
@@ -139,11 +140,11 @@ export const metaInfo = {
   opacity: 0.8;
 }
 
-.image-reader-item .md-icon-close {
+.image-reader-item /deep/.md-icon-close {
   font-size: 24px;
 }
 
-.image-reader-item.add .md-icon {
+.image-reader-item.add /deep/.md-icon {
   position: absolute;
   top: 40%;
   left: 50%;

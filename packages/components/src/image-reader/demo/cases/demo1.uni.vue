@@ -73,14 +73,19 @@ export default {
       // eslint-disable-next-line no-undef
       uni.compressImage({
         src: file.path,
-        width: 10,
-        height: 10,
-        quality: 1,
+        width: '5px',
+        height: '5px',
+        quality: 10,
         success: res => {
           // eslint-disable-next-line no-undef
-          const dataUrl = uni.getFileSystemManager().readFileSync(res.tempFilePath, 'base64')
-          demoImageList.push(`data:image/jpeg;base64,${dataUrl}`)
-          this.$set(this.imageList, name, demoImageList)
+          uni.getFileSystemManager().readFile({
+            filePath: res.tempFilePath,
+            encoding: 'base64',
+            success: res => {
+              demoImageList.push(`data:image/jpeg;base64,${res.data}`)
+              this.$set(this.imageList, name, demoImageList)
+            },
+          })
         },
       })
 
@@ -138,7 +143,8 @@ export const metaInfo = {
   margin-right: 0;
 }
 
-.md-example-child-reader .image-reader-item-del {
+.md-example-child-reader .image-reader-item .image-reader-item-del,
+.md-example-child-reader .image-reader-item /deep/.md-tag {
   position: absolute;
   top: 0;
   right: 0;
@@ -146,11 +152,11 @@ export const metaInfo = {
   opacity: 0.8;
 }
 
-.image-reader-item .md-icon-close {
+.image-reader-item /deep/.md-icon-close {
   font-size: 24px;
 }
 
-.image-reader-item.add .md-icon {
+.image-reader-item.add /deep/.md-icon {
   position: absolute;
   top: 40%;
   left: 50%;

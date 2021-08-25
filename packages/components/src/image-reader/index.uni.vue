@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import {warn} from '@mand-mobile/shared/lib/util'
 import imageReaderMixin from './mixins'
 
 export default {
@@ -19,16 +20,24 @@ export default {
           this.$_mixinReaderComplete(101)
           return
         }
-        try {
-          // eslint-disable-next-line no-undef
-          const dataUrl = uni.getFileSystemManager().readFileSync(file.path, 'base64')
-          this.$_mixinReaderComplete(0, {
-            dataUrl: `data:image/jpeg;base64,${dataUrl}`,
-            file,
-          })
-        } catch (error) {
-          this.$_mixinReaderComplete(102)
-        }
+        // eslint-disable-next-line no-undef
+        uni.getFileSystemManager().readFile({
+          filePath: file.path,
+          encoding: 'base64',
+          success: res => {
+            if (!file.name) {
+              file.name = file.path
+            }
+            this.$_mixinReaderComplete(0, {
+              dataUrl: `data:image/jpeg;base64,${res.data}`,
+              file,
+            })
+          },
+          fail: err => {
+            warn(err.errMsg || err.errorMessage)
+            this.$_mixinReaderComplete(102)
+          },
+        })
       })
     },
     // MARK: events handler
