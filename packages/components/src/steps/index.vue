@@ -14,37 +14,39 @@
         class="md-steps_item--horizontal"
         :step="step"
         :index="index"
-        :progress="progress[index]"
+        :progress="progressSet[index]"
         :dislocation="dislocation && (index % 2 === 0)"
         :is-reached="index < currentLength"
         :is-current="index === currentLength"
         :is-last="index === steps.length - 1"
         :key="step.index"
-        :slots="{
-          icon: $scopedSlots.icon,
-          content: $scopedSlots.content
-        }"
+        :slotIcon="!!($scopedSlots && $scopedSlots.icon)"
+        :slotContent="!!($scopedSlots && $scopedSlots.content)"
         :style="{
           flex: step.flex || 1
         }"
       >
+        <!-- mp-aplipay wrapped by div -->
         <template #icon>
-          <slot name="icon" :index="index" :current-index="currentLength"/>
+          <div><slot name="icon" :index="index" :current-index="currentLength"/></div>
         </template>
         <template #reached>
-          <slot name="reached" :index="index">
-            <md-step-node active/>
-          </slot>
+          <div>
+            <slot name="reached" :index="index" v-if="$scopedSlots.reached"/>
+            <md-step-node v-else active/>
+          </div>
         </template>
         <template #current>
-          <slot name="current" :index="index">
-            <md-icon name="success"></md-icon>
-          </slot>
+          <div>
+            <slot name="current" :index="index" v-if="$scopedSlots.current"/>
+            <md-icon v-else name="success"/>
+          </div>
         </template>
         <template #unreached>
-          <slot name="unreached" :index="index">
-            <md-step-node/>
-          </slot>
+          <div>
+          <slot name="unreached" :index="index" v-if="$scopedSlots.unreached"/>
+          <md-step-node v-else/>
+          </div>
         </template>
         <template #content>
           <slot name="content" :index="index" :step="step"/>
@@ -55,35 +57,36 @@
         class="md-steps_item--vertical"
         :step="step"
         :index="index"
-        :progress="progress[index]"
+        :progress="progressSet[index]"
         :dislocation="dislocation && (index % 2 === 0)"
         :adaptive="adaptive"
         :is-reached="index < currentLength"
         :is-current="index === currentLength"
         :is-last="index === steps.length - 1"
         :key="step.index"
-        :slots="{
-          icon: $scopedSlots.icon,
-          content: $scopedSlots.content
-        }"
+        :slotIcon="!!($scopedSlots && $scopedSlots.icon)"
+        :slotContent="!!($scopedSlots && $scopedSlots.content)"
       >
         <template #icon>
-          <slot name="icon" :index="index" :current-index="currentLength"/>
+          <div><slot name="icon" :index="index" :current-index="currentLength"/></div>
         </template>
         <template #reached>
-          <slot name="reached" :index="index">
-            <md-step-node active/>
-          </slot>
+          <div>
+            <slot name="reached" :index="index" v-if="$scopedSlots.reached"/>
+            <md-step-node v-else active/>
+          </div>
         </template>
         <template #current>
-          <slot name="current" :index="index">
-            <md-icon name="success"></md-icon>
-          </slot>
+          <div>
+            <slot name="current" :index="index" v-if="$scopedSlots.current"/>
+            <md-icon v-else name="success"/>
+          </div>
         </template>
         <template #unreached>
-          <slot name="unreached" :index="index">
-            <md-step-node/>
-          </slot>
+          <div>
+          <slot name="unreached" :index="index" v-if="$scopedSlots.unreached"/>
+          <md-step-node v-else/>
+          </div>
         </template>
         <template #content>
           <slot name="content" :index="index" :step="step"/>
@@ -149,7 +152,7 @@ export default {
   data() {
     return {
       initialed: false,
-      progress: [],
+      progressSet: [],
       stepsSize: [],
       currentLength: 0,
       duration: 0.3,
@@ -180,8 +183,8 @@ export default {
     },
     barInnerTransform() {
       return index => {
-        const {progress} = this
-        const step = (progress[index] && progress[index]['len']) || 0
+        const {progressSet} = this
+        const step = (progressSet[index] && progressSet[index]['len']) || 0
         const transform =
           this.direction === 'horizontal' ? `(${(step - 1) * 100}%, 0, 0)` : `(0, ${(step - 1) * 100}%, 0)`
         return transform
@@ -206,7 +209,7 @@ export default {
           })
         }, 100)
       } else {
-        this.progress = newProgress
+        this.progressSet = newProgress
         this.currentLength = currentStep
       }
     },
@@ -215,7 +218,7 @@ export default {
   created() {
     const currentStep = this.$_formatValue(this.current)
     this.currentLength = currentStep
-    this.progress = this.$_sliceProgress(currentStep)
+    this.progressSet = this.$_sliceProgress(currentStep)
   },
 
   methods: {
@@ -232,7 +235,7 @@ export default {
     $_sliceProgress(current) {
       return this.steps.slice(0, this.steps.length - 1).map((step, index) => {
         const offset = current - index
-        const progress = this.progress[index]
+        const progress = this.progressSet[index]
         const isNewProgress = progress === undefined
         let len, time
         if (offset <= 0) {
@@ -256,7 +259,7 @@ export default {
           if (isAdd) {
             currentLength += progress[index].len
           } else {
-            currentLength -= this.progress[index].len - progress[index].len
+            currentLength -= this.progressSet[index].len - progress[index].len
           }
 
           setTimeout(() => {
@@ -265,7 +268,7 @@ export default {
             walk(index)
           }, progress[index].time * 1000)
         }
-        this.$set(this.progress, index, progress[index])
+        this.$set(this.progressSet, index, progress[index])
       }
       walk(isAdd ? 0 : progress.length - 1)
     },

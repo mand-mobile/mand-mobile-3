@@ -20,7 +20,7 @@
           minHeight: `${step.iconSize}px`
         } : '']"
       >
-        <template v-if="slots.icon">
+        <template v-if="slotIcon">
           <slot name="icon"/>
         </template>
         <template v-else-if="isReached">
@@ -34,7 +34,7 @@
         </template>
       </div>
       <div class="md-steps_text">
-        <slot v-if="slots.content" name="content"/>
+        <slot v-if="slotContent" name="content"/>
         <template v-else>
           <div class="md-name">{{step.name}}</div>
           <div class="md-desc" v-if="step.text">{{step.text}}</div>
@@ -61,7 +61,7 @@ import {flatStyleObject} from '@mand-mobile/shared/lib/util'
 export default {
   name: 'md-steps-horizontal',
 
-  props: ['step', 'index', 'progress', 'dislocation', 'isReached', 'isCurrent', 'isLast', 'slots'],
+  props: ['step', 'index', 'progress', 'dislocation', 'isReached', 'isCurrent', 'isLast', 'slotIcon', 'slotContent'],
   computed: {
     barInnerTransformStyle() {
       const {progress} = this

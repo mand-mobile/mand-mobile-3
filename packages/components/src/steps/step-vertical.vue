@@ -61,7 +61,7 @@ import {flatStyleObject} from '@mand-mobile/shared/lib/util'
 export default {
   name: 'md-steps-vertical',
 
-  props: ['step', 'index', 'progress', 'isReached', 'isCurrent', 'isLast', 'adaptive', 'slots'],
+  props: ['step', 'index', 'progress', 'isReached', 'isCurrent', 'isLast', 'adaptive', 'slotIcon', 'slotContent'],
   computed: {
     barInnerTransformStyle() {
       const {progress} = this
