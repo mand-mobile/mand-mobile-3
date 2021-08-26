@@ -7,9 +7,9 @@
     ]"
     v-if="isShow"
   >
-    <div class="md-notice-bar-left" :class="[(!customLeft && !icon) && 'md-notice-bar-empty']">
+    <div class="md-notice-bar-left" :class="[(!$slots.left && !icon) && 'md-notice-bar-empty']">
       <!-- custom first -->
-      <template v-if="customLeft">
+      <template v-if="$slots.left">
         <slot name="left"></slot>
       </template>
       <template v-else-if="icon">
@@ -35,7 +35,7 @@
     </div>
     <div class="md-notice-bar-right">
       <!-- custom first -->
-      <template v-if="customRight">
+      <template v-if="$slots.right">
         <slot name="right"></slot>
       </template>
       <template v-else-if="mode || closable">
@@ -107,16 +107,8 @@ export default {
   },
 
   computed: {
-    customLeft() {
-      return !!this.$slots.left
-    },
-
-    customRight() {
-      return !!this.$slots.right
-    },
-
     rightIcon() {
-      return this.mode === 'link' ? 'arrow-right' : 'close'
+      return this.mode === 'link' ? 'arrow' : 'close'
     },
   },
 

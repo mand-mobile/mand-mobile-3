@@ -45,5 +45,6 @@ export const metaInfo = {
 }
 .md-example-child-notice-bar-4 .md-notice-bar {
   width: 100%;
+  margin-bottom: 10px;
 }
 </style>
