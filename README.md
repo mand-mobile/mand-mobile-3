@@ -21,9 +21,9 @@
 
 ## Preview
 
-|H5|微信小程序|
-| --- | --- |
-|<img src="https://pt-starimg.didistatic.com/static/starimg/img/HVpAVyKV6E1629362368493.png" width="120">|<img src="https://pt-starimg.didistatic.com/static/starimg/img/U201LJnt021629362455710.jpg" width="120">|
+|H5|微信小程序|支付宝小程序（WIP）|
+| :---: | :---: | :---: |
+|<img src="https://pt-starimg.didistatic.com/static/starimg/img/HVpAVyKV6E1629362368493.png" width="120">|<img src="https://pt-starimg.didistatic.com/static/starimg/img/U201LJnt021629362455710.jpg" width="120">|<img src="https://pt-starimg.didistatic.com/static/starimg/img/EZTePdcLLi1629970258037.jpg" width="120">|
 
 ## Features
 
