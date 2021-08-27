@@ -13,7 +13,7 @@
         :key="scrollerTmpKey"
         @scroll="$_onScroll"
       >
-         <div class="md-tab-bar_list"
+        <div class="md-tab-bar_list"
           :class="[`md-${justify}`]"
           :style="{width: contentW + 'px'}"
         >
@@ -29,12 +29,14 @@
             @click="$_onClick(item, index)"
           >
             <slot
+              v-if="$scopedSlots.item"
               name="item"
               :item="item"
               :items="items"
               :index="index"
               :currentName="currentName"
-            >{{ item.label }}</slot>
+            />
+            <template v-else>{{ item.label }}</template>
           </div>
         </div>
         <div
