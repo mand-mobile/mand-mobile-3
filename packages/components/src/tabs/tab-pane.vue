@@ -17,7 +17,7 @@ export default {
   name: 'md-tab-pane',
 
   components: {
-    'md-transition': Transition
+    'md-transition': Transition,
   },
 
   inject: {
@@ -40,6 +40,9 @@ export default {
     disabled: {
       type: Boolean,
     },
+    index: {
+      type: Number,
+    },
   },
 
   // data() {
@@ -60,12 +63,15 @@ export default {
       return this.rootTabs.prevIndex > this.rootTabs.currentIndex ? 'md-tab-slide-right' : 'md-tab-slide-left'
     },
     paneData() {
-      return new Proxy({}, {
-        get: (target, prop) => {
-          return this[prop]
-        }
-      })
-    }
+      return new Proxy(
+        {},
+        {
+          get: (target, prop) => {
+            return this[prop]
+          },
+        },
+      )
+    },
   },
 
   watch: {

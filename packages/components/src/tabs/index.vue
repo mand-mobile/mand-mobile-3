@@ -53,13 +53,22 @@ export default {
 
   computed: {
     menus() {
-      return this.panes.map(pane => {
-        return {
+      const menus = []
+      for (let i = 0, len = this.panes.length; i < len; i++) {
+        const pane = this.panes[i]
+        const index = pane.index
+        const item = {
           name: pane.name,
           label: pane.label,
           disabled: pane.disabled,
         }
-      })
+        if (index !== undefined && !menus[index]) {
+          menus[index] = item
+        } else {
+          menus.push(item)
+        }
+      }
+      return menus.filter(m => !!m)
     },
     currentIndex() {
       for (let i = 0, len = this.menus.length; i < len; i++) {
@@ -89,9 +98,11 @@ export default {
   },
 
   mounted() {
-    if (!this.currentName && this.menus.length) {
-      this.currentName = this.menus[0].name
-    }
+    this.$nextTick(() => {
+      if (!this.currentName && this.menus.length) {
+        this.currentName = this.menus[0].name
+      }
+    })
   },
 
   methods: {

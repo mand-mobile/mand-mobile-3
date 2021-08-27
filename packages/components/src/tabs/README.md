@@ -38,6 +38,7 @@ Vue.component(TabPane.name, TabPane)
 |name|唯一键名|String| |必须|
 |label|菜单标题|String| |必须|
 |disabled|是否禁用|Boolean|`false`| |
+|index <MDPlatformTag uni/>|强制排序|Number|-|仅用于渲染顺序与元素排序不符的情况下重新强制排序，如支付宝小程序|
 
 ### Tabs Methods
 
