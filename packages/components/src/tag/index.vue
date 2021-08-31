@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import {camelize, inBrowser, ismp} from '@mand-mobile/shared/lib/util'
+import {camelize} from '@mand-mobile/shared/lib/util'
 import {Dom} from '@mand-mobile/platform-runtime/lib/module'
 export default {
   name: 'md-tag',
@@ -87,7 +87,7 @@ export default {
         `shape-${this.shape}`,
         `type-${this.type}`,
         `font-weight-${this.fontWeight}`,
-      ]
+      ].join(' ')
     },
     // 考虑统一成工具函数
     inlineStyles() {
@@ -114,8 +114,8 @@ export default {
     },
   },
   mounted() {
-    const dom = new Dom()
-    this.$nextTick(() => {
+    const $MDDom = Dom.bind(this)
+    this.$nextTick(async () => {
       const setStyle = height => {
         const radius = height / 2
         this.$set(this.sizeStyle, 'paddingLeft', radius + 'px')
@@ -128,16 +128,10 @@ export default {
       if (this.shape !== 'circle') {
         return
       }
-      if (typeof uni === 'object' && !inBrowser && ismp) {
-        dom
-          .querySelector('.shape-circle')
-          .getBoundingClientRect()
-          .then(data => {
-            setStyle(data.height)
-          })
-      } else {
-        setStyle(this.$el.offsetHeight)
-      }
+      const rect = await $MDDom()
+        .querySelector('.shape-circle')
+        .getBoundingClientRect()
+      setStyle(rect.height)
     })
   },
 }
@@ -155,6 +149,9 @@ export default {
     background rgba(0,0,0,0)
     color md-tag-color
     border-color md-tag-color
+  .shape-circle
+    padding-top 4px
+    padding-bottom 4px
   .shape-square
     padding 0 12px
     border-radius 50%
@@ -235,7 +232,7 @@ export default {
   .shape-bubble
     width 50px
     padding 6px 0
-    border-radius md-radius-circle
+    border-radius 50px
     border-bottom-left-radius 0
     box-sizing border-box
 

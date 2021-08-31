@@ -1,6 +1,6 @@
 <template>
   <div class="md-example-child md-example-child-tag md-example-child-tag-0">
-    <md-tag class="md-tag" size="tiny" shape="circle" type="fill" fill-color="#FC7353" font-color="#000"></md-tag>
+    <md-tag class="md-tag" size="tiny" shape="circle" type="fill" fill-color="#FC7353" font-color="#fff">10</md-tag>
     <md-tag class="md-tag" size="small" shape="circle" type="fill" fill-color="#FC7353" font-color="#fff">特惠</md-tag>
     <md-tag class="md-tag" size="large" shape="circle" type="fill" fill-color="#FC7353" font-color="#fff">返5000</md-tag>
     <md-tag class="md-tag" size="small" shape="circle" type="ghost" font-color="#FC7353">特惠</md-tag>
