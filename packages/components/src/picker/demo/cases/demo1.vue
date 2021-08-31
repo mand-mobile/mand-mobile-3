@@ -1,7 +1,7 @@
 <template>
-  <div class="md-example-child md-example-child-picker md-example-child-picker-1">
+  <div class="md-example-child md-example-child-picker md-example-child-picker-1" disable-scroll>
     <md-picker-view
-      class="picker"
+      class="md-picker-view"
       ref="picker"
       :data="pickerData"
       :label-key="labelKey"
@@ -79,7 +79,7 @@ export const metaInfo = {
 </script>
 
 <style>
-.md-example-child-picker-1 .picker {
+.md-example-child-picker-1 .md-picker-view {
   display: block;
   margin-bottom: 20px;
 }

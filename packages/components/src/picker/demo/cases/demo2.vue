@@ -1,5 +1,5 @@
 <template>
-  <div class="md-example-child md-example-child-picker md-example-child-picker-2">
+  <div class="md-example-child md-example-child-picker md-example-child-picker-2" disable-scroll>
     <md-field>
       <md-field-item
         title="省市区/县"
@@ -46,7 +46,6 @@ export default {
     },
     onPickerConfirm() {
       const values = this.$refs.picker.getColumnValues()
-
       let res = ''
       values.forEach(value => {
         value && (res += `${value.text || value.label} `)

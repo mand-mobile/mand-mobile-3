@@ -1,7 +1,7 @@
 <template>
-  <div class="md-example-child md-example-child-picker md-example-child-picker-0">
+  <div class="md-example-child md-example-child-picker md-example-child-picker-0" disable-scroll>
     <md-picker-view
-      class="picker"
+      class="md-picker-view"
       ref="picker"
       :data="pickerData"
       :default-index="[1]"
@@ -45,13 +45,13 @@ export default {
     getColumnValues(picker) {
       const value = this.$refs[picker].getColumnValues()
       Dialog.alert({
-        content: `<pre>${JSON.stringify(value)}</pre>`,
+        content: JSON.stringify(value),
       })
     },
     getColumnIndexs(picker) {
       const value = this.$refs[picker].getColumnIndexs()
       Dialog.alert({
-        content: `<pre>${JSON.stringify(value)}</pre>`,
+        content: JSON.stringify(value),
       })
     },
   },
@@ -72,7 +72,7 @@ export const metaInfo = {
 </script>
 
 <style>
-.md-example-child-picker-0 .picker {
+.md-example-child-picker-0 .md-picker-view {
   display: block;
   margin-bottom: 20px;
 }

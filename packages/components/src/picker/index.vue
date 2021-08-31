@@ -174,25 +174,41 @@ export default {
         this.isPickerShow = this.value
       }
 
-      // mark initial selectedIndexs as snapshoot
-      setTimeout(() => {
-        this.$_cacheSelectedIndex()
-      }, 0)
+      // setTimeout(() => {
+      //   this.$_cacheSelectedIndex()
+      // }, 0)
+    },
+    $_refreshPicker() {
+      if (!this.$refs.pickerView) {
+        return
+      }
+      const pickerColumn = this.getColumnContext()
+      /* istanbul ignore next */
+      if (!pickerColumn.isScrollInitialed) {
+        setTimeout(() => {
+          pickerColumn.refresh()
+        }, 0)
+      }
     },
     $_cacheSelectedIndex() {
+      // mark initial selectedIndexs as snapshoot
       this.cacheSelectedIndexs = extend([], this.getColumnContext().selectedIndexs)
     },
 
     $_onPickerConfirm() {
       const pickerColumn = this.getColumnContext()
       const columnValues = pickerColumn.getColumnValues()
+
       // const columnIndexs = pickerColumn.getColumnIndexs()
       const isScrolling = pickerColumn.wheels.some(wheel => {
         return wheel.scroller.pending
       })
+
       if (!isScrolling) {
         this.isPickerShow = false
-        // this.cacheSelectedIndexs = extend([], columnIndexs)
+        this.$nextTick(() => {
+          this.$_cacheSelectedIndex()
+        })
         this.$emit('confirm', columnValues)
       }
     },
@@ -212,18 +228,13 @@ export default {
       this.$emit('change', columnIndex, itemIndex, values)
     },
     $_onPickerBeforeShow() {
-      const pickerColumn = this.getColumnContext()
-      /* istanbul ignore next */
-      if (!pickerColumn.isScrollInitialed) {
-        setTimeout(() => {
-          pickerColumn.refresh()
-        }, 0)
-      }
+      this.$_refreshPicker()
     },
     $_onPickerHide() {
       this.$emit('hide')
     },
     $_onPickerShow() {
+      this.$_refreshPicker()
       this.$emit('show')
     },
 

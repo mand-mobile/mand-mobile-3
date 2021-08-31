@@ -117,8 +117,8 @@ export default {
     },
   },
 
-  created() {
-    this.refresh = debounce(this.refresh, 10)
+  beforeCreate() {
+    this.refresh = debounce(this.refresh, 100)
   },
   mounted() {
     this.isImmediateInit &&
@@ -206,25 +206,25 @@ export default {
       return data
     },
 
-    $_onPickerConfirm() {
-      const pickerColumn = this.$refs.pickerColumn
-      const columnValues = pickerColumn.getColumnValues()
-      let isScrolling = false
+    // $_onPickerConfirm() {
+    //   const pickerColumn = this.$refs.pickerColumn
+    //   const columnValues = pickerColumn.getColumnValues()
+    //   let isScrolling = false
 
-      // TODO
-      pickerColumn.wheels.forEach(wheel => {
-        /* istanbul ignore next */
-        if (wheel.scroller.pending) {
-          isScrolling = true
-          return false
-        }
-      })
+    //   // TODO
+    //   pickerColumn.wheels.forEach(wheel => {
+    //     /* istanbul ignore next */
+    //     if (wheel.scroller.pending) {
+    //       isScrolling = true
+    //       return false
+    //     }
+    //   })
 
-      if (!isScrolling) {
-        this.isPickerShow = false
-        this.$emit('confirm', columnValues)
-      }
-    },
+    //   if (!isScrolling) {
+    //     this.isPickerShow = false
+    //     this.$emit('confirm', columnValues)
+    //   }
+    // },
     $_onPickerInitialed() {
       this.$emit('initialed')
     },

@@ -76,7 +76,7 @@
 import Scroller from '@mand-mobile/scroller'
 import WheelScroller from '@mand-mobile/scroller/lib/wheel'
 import {Dom, Device} from '@mand-mobile/platform-runtime/lib/module'
-import {noop, traverse, inArray, inBrowser, extend, warn} from '@mand-mobile/shared/lib/util'
+import {noop, traverse, inArray, inBrowser, extend, warn, randomId} from '@mand-mobile/shared/lib/util'
 import pickerMixin from './mixins'
 
 const API_LIST = [
@@ -141,6 +141,7 @@ export default {
 
   data() {
     return {
+      id: randomId(),
       columnValues: [],
       columnRect: [],
       wheels: [],
@@ -152,6 +153,7 @@ export default {
       isScrollInitialed: false,
       isScrolling: false,
       isMouseDown: false,
+      refreshTimer: null,
     }
   },
 
@@ -322,11 +324,9 @@ export default {
       if (this.isInitialed) {
         return
       }
-
       const data = this.columnValues
       const defaultValue = this.defaultValue
       const defaultIndex = this.defaultIndex
-
       this.$_getColumnIndexByDefault(data, defaultIndex, defaultValue, (columnIndex, itemIndex) => {
         this.$set(this.selectedIndexs, columnIndex, itemIndex)
       })
@@ -498,7 +498,6 @@ export default {
       const data = this.columnValues
       const activeIndexs = this.selectedIndexs
       let activeValues = []
-
       data.forEach((item, index) => {
         activeValues[index] = item[activeIndexs[index]]
       })
@@ -537,7 +536,10 @@ export default {
       this.$nextTick(callback.bind(this, this))
     },
     refresh(callback, startIndex = 0) {
-      setTimeout(() => {
+      if (this.refreshTimer) {
+        clearTimeout(this.refreshTimer)
+      }
+      this.refreshTimer = setTimeout(() => {
         if (!startIndex) {
           this.isInitialed = false
         }
