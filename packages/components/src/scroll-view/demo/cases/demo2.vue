@@ -1,5 +1,5 @@
 <template>
-  <div class="md-example-child md-example-child-scroll-view md-example-child-scroll-view-2">
+  <div class="md-example-child md-example-child-scroll-view md-example-child-scroll-view-2" disable-scroll>
     <md-scroll-view
       ref="scrollView"
       :scrolling-x="false"

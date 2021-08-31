@@ -11,8 +11,8 @@
     :immediate-check-end-reaching="immediateCheckEndReaching"
     :touch-angle="touchAngle"
     :is-prevent="isPrevent"
-    :refresher-enable="hasRefresher"
-    :more-loader-enable="hasMoreLoader"
+    :refresher-enable="refresherEnable || !!($slots.refresh || $scopedSlots.refresh)"
+    :more-loader-enable="moreLoaderEnable || !!($slots.more || $scopedSlots.more)"
     :styles="styles"
   >
     <div class="md-scroll-view_header" v-if="$slots.header">
@@ -113,15 +113,6 @@ export default {
     },
     styles: {
       type: Object,
-    },
-  },
-
-  computed: {
-    hasRefresher() {
-      return this.refresherEnable || !!(this.$slots.refresh || this.$scopedSlots.refresh)
-    },
-    hasMoreLoader() {
-      return this.moreLoaderEnable || !!(this.$slots.more || this.$scopedSlots.more)
     },
   },
 }

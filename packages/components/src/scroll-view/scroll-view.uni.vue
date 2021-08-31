@@ -1,6 +1,6 @@
 <template>
   <scroll-view
-    class="md-scroll-view-primitive md-scroll-view" 
+    class="md-scroll-view-primitive" 
     :scroll-x="scrollingX"
     :scroll-y="scrollingY"
     :scroll-top="scrollTop"
@@ -10,18 +10,20 @@
     :refresher-enabled="refresherEnable"
     :refresher-triggered="isRefreshing"
     :refresher-threshold="200"
-    :style="styleContent"
     @scroll="$_onScroll"
     @scrolltolower="$_onScrollToLower"
     @refresherrefresh="$_onRefresherRefreshing"
   >
-    <div
-      class="md-scroll-view_container"
-      :class="{           
-        'md-horizon': scrollingX && !scrollingY,
-      }"
-    >
-      <slot></slot>
+    <!-- mp-alipay wrapper by primitive element for bounding rect querying -->
+    <div class="md-scroll-view" :style="styleContent">
+      <div
+        class="md-scroll-view_container"
+        :class="{           
+          'md-horizon': scrollingX && !scrollingY,
+        }"
+      >
+        <slot></slot>
+      </div>
     </div>
   </scroll-view>
 </template>
@@ -159,4 +161,7 @@ export default {
     position relative
     &.md-horizon
       display inline-block
+.md-scroll-view-primitive, .md-scroll-view
+  &::-webkit-scrollbar
+    display none
 </style>
