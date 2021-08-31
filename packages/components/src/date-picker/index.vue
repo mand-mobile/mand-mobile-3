@@ -109,11 +109,18 @@ export default {
       if (this.value) {
         this.isPickerShow = this.value
       }
-
-      // mark initial selectedIndexs as snapshoot
-      setTimeout(() => {
-        this.$_cacheSelectedDate()
-      }, 0)
+    },
+    $_refreshPicker() {
+      if (!this.$refs.datePickerView) {
+        return
+      }
+      const pickerColumn = this.getColumnContext()
+      /* istanbul ignore next */
+      if (!pickerColumn.isScrollInitialed) {
+        setTimeout(() => {
+          pickerColumn.refresh()
+        }, 0)
+      }
     },
     $_cacheSelectedDate() {
       this.cacheSelectedDate = this.getFormatDate()
@@ -131,7 +138,9 @@ export default {
       })
       if (!isScrolling) {
         this.isPickerShow = false
-        // this.cacheSelectedIndexs = extend([], columnIndexs)
+        this.$nextTick(() => {
+          this.$_cacheSelectedDate()
+        })
         this.$emit('confirm', columnValues)
       }
     },
@@ -148,18 +157,13 @@ export default {
       this.$emit('change', columnIndex, itemIndex, values)
     },
     $_onPickerBeforeShow() {
-      const pickerColumn = this.getColumnContext()
-      /* istanbul ignore next */
-      if (!pickerColumn.isScrollInitialed) {
-        setTimeout(() => {
-          pickerColumn.refresh()
-        }, 0)
-      }
+      this.$_refreshPicker()
     },
     $_onPickerHide() {
       this.$emit('hide')
     },
     $_onPickerShow() {
+      this.$_refreshPicker()
       this.$emit('show')
     },
   },

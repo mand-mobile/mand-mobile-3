@@ -1,5 +1,5 @@
 <template>
-  <div class="md-example-child md-example-child-date-picker md-example-child-date-picker-3">
+  <div class="md-example-child md-example-child-date-picker md-example-child-date-picker-3" disable-scroll>
     <md-field>
       <md-field-item
         name="name"
@@ -7,7 +7,7 @@
         arrow="arrow-right"
         align="right"
         :content="datePickerValue"
-        @click.native="isDatePickerShow = true">
+        @click="isDatePickerShow = true">
       </md-field-item>
     </md-field>
     <md-date-picker

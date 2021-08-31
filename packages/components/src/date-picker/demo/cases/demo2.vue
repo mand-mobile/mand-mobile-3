@@ -1,7 +1,7 @@
 <template>
-  <div class="md-example-child md-example-child-date-picker md-example-child-date-picker-2">
+  <div class="md-example-child md-example-child-date-picker md-example-child-date-picker-2" disable-scroll>
     <md-date-picker-view
-      class="picker"
+      class="md-date-picker-view"
       ref="datePicker"
       type="datetime"
       :default-date="currentDate"
@@ -49,7 +49,7 @@ export const metaInfo = {
 </script>
 
 <style>
-.md-example-child-date-picker-2 .picker {
+.md-example-child-date-picker-2 .md-date-picker-view {
   display: block;
   margin-bottom: 20px;
 }

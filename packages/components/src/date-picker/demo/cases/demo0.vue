@@ -1,5 +1,5 @@
 <template>
-  <div class="md-example-child md-example-child-date-picker md-example-child-date-picker-0">
+  <div class="md-example-child md-example-child-date-picker md-example-child-date-picker-0" disable-scroll>
     <md-date-picker-view
       ref="datePicker"
       today-text="今天"

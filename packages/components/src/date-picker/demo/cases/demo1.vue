@@ -1,5 +1,5 @@
 <template>
-  <div class="md-example-child md-example-child-date-picker md-example-child-date-picker-1">
+  <div class="md-example-child md-example-child-date-picker md-example-child-date-picker-1" disable-scroll>
     <md-date-picker-view
       type="time"
       :unit-text="unit"
