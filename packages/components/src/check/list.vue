@@ -25,6 +25,7 @@
       <!--iconPosition-->
       <template #right>
         <md-check
+          class="md-check"
           v-if="!alignCenter && iconPosition === 'right'"
           :name="item.value"
           :disabled="item.disabled"
@@ -37,6 +38,7 @@
       </template>
       <template #left>
         <md-check
+          class="md-check"
           v-if="!alignCenter && iconPosition === 'left'"
           :name="item.value"
           :disabled="item.disabled"
@@ -120,4 +122,7 @@ export default {
 <style lang="stylus" scoped>
 .md-check-item
   text-align left
+  .md-check
+    margin-top 0
+    margin-bottom 0
 </style>
