@@ -38,10 +38,11 @@ export function createProxyApiMixin (proxyMap = {}) {
 export function createProxyEventsMixin (proxyMap = {}) {
   return {
     mounted() {
-      tranverseProxyMap(proxyMap, (source, list) => {
+      tranverseProxyMap(proxyMap, (context, ref, list) => {
         if (!isEmptyObject(this.$listeners)) {
           list = Object.keys(this.$listeners)
         }
+        const source = context.$refs[ref];
         list.forEach(event => {
           source && this.$_proxyEvent(source, event)
         })
