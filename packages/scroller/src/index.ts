@@ -364,7 +364,7 @@ export default class Scroller extends EventEmitter {
   // }
 
   handleStart(e: TouchEvent) {
-    const _eventType = eventTypeMap[e.type]
+    const _eventType = eventTypeMap[e.type.toLowerCase()]
     
     if (!this.enabled || (this.initiated && this.initiated !== _eventType)) {
       return
@@ -409,7 +409,7 @@ export default class Scroller extends EventEmitter {
   }
 
   handleMove(e: TouchEvent) {
-    if (!this.enabled || (eventTypeMap[e.type] !== this.initiated)) {
+    if (!this.enabled || (eventTypeMap[e.type.toLowerCase()] !== this.initiated)) {
       return
     }
     
@@ -483,7 +483,7 @@ export default class Scroller extends EventEmitter {
   }
 
   handleEnd(e: TouchEvent) {
-    if (!this.enabled || (eventTypeMap[e.type] !== this.initiated)) {
+    if (!this.enabled || (eventTypeMap[e.type.toLowerCase()] !== this.initiated)) {
       return
     }
     this.setInitiated()
